@@ -40,5 +40,7 @@
 - Validado instalando los tarballs empaquetados de `@andrescardenasintegrity/integrity-ui-nuxt` y `@andrescardenasintegrity/integrity-tokens` en una copia aislada de `starters/nuxt-client/` fuera del monorepo (`pnpm install`, `nuxt typecheck`, `nuxt build`, SSR HTTP 200 en `/` y `/login`, fuentes `Inter`/`JetBrains Mono`, Heroicons locales y CSS Light/Dark).
 - Hallazgo corregido durante la prueba: migración de `tailwind.config.js` a `tailwind.config.cjs` + exports CJS en `integrity-tokens` para evitar el ciclo `klona` de `jiti@1.21.7` al cargar capas ESM desde `node_modules` bajo Node 24.
 
-### Paso 4 — Deploy estático del Showcase
-- Configurar `pnpm generate` y workflow (GitHub Pages o salida estática para VPS) para que todo el equipo consulte **Integrity UI/UX** por URL.
+### Paso 4 — Deploy estático del Showcase *(Completado)*
+- Configurado `apps/showcase/nuxt.config.ts` con `app.baseURL` dinámico (`NUXT_APP_BASE_URL`), `nitro.prerender` para las 7 rutas, `icon.clientBundle.scan: true` (45 Heroicons embebidos offline) y `apps/showcase/public/.nojekyll`.
+- Creado el workflow `.github/workflows/deploy-showcase.yml` para GitHub Pages (detección automática de `base_path` + `workflow_dispatch`) y documentada la salida estática `apps/showcase/.output/public/` para VPS/Nginx.
+- Validado `nuxt generate` tanto para subpath `/integrity-ui/` como para raíz `/`.

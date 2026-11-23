@@ -13,7 +13,7 @@ integrity-ui/
 │   └── showcase/             # @andrescardenasintegrity/integrity-showcase — Portal web interactivo de documentación, componentes y templates
 ├── starters/
 │   └── nuxt-client/          # Plantilla mínima Nuxt 4 lista para copiar en proyectos de nuevos clientes
-├── .github/workflows/        # CI (ci.yml) y publicación automática a GitHub Packages (publish.yml)
+├── .github/workflows/        # CI (ci.yml), publicación a GitHub Packages (publish.yml) y deploy del Showcase (deploy-showcase.yml)
 ├── .npmrc.consumer.example   # Plantilla .npmrc para proyectos cliente
 └── DESIGN_SYSTEM.md          # Reglas visuales oficiales para desarrolladores y agentes de IA
 ```
@@ -42,6 +42,13 @@ git push origin v1.0.0
 ```
 
 También puedes validar la publicación en modo `dry-run` desde **Actions → Publish Packages to GitHub Packages → Run workflow**.
+
+## Deploy estático del Showcase
+
+El portal interactivo `apps/showcase` está configurado para exportación estática completa (`nuxt generate`) con las 7 rutas pre-renderizadas, fuentes locales y los 45 Heroicons incrustados en el bundle de cliente:
+
+- **GitHub Pages (automático):** el workflow [`.github/workflows/deploy-showcase.yml`](./.github/workflows/deploy-showcase.yml) se ejecuta en cada `push` a `main`, detecta automáticamente el `base_path` (`/integrity-ui/` o `/` si usas dominio propio) e incluye `.nojekyll`. Solo habilita **Settings → Pages → Source: GitHub Actions** en el repositorio.
+- **VPS / Nginx (salida estática):** ejecuta `pnpm generate` (con `NUXT_APP_BASE_URL=/` por defecto) y sirve la carpeta `apps/showcase/.output/public/` directamente desde Nginx/Caddy.
 
 ## Cómo usar en un nuevo proyecto Nuxt 4
 
