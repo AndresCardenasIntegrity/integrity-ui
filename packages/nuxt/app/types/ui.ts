@@ -88,6 +88,8 @@ export interface IntegrityTimelineEvent {
 export interface IntegritySelectOption {
   label: string
   value: string
+  description?: string
+  meta?: string
   disabled?: boolean
 }
 

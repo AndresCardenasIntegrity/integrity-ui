@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useId } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef, useId } from 'vue'
 import { computePaginationRange, getPaginationBounds } from '../utils/pagination'
 
 const page = defineModel<number>('page', { default: 1 })
@@ -23,6 +23,8 @@ const props = withDefaults(defineProps<{
 })
 
 const selectId = useId()
+const sizeMenuRef = ref<HTMLElement | null>(null)
+const sizeMenuOpen = shallowRef(false)
 
 const bounds = computed(() => getPaginationBounds(page.value, pageSize.value, props.total))
 
@@ -41,13 +43,39 @@ function goTo(target: number) {
   }
 }
 
-function onPageSizeChange(event: Event) {
-  const next = Number((event.target as HTMLSelectElement).value)
-  if (!Number.isNaN(next) && next > 0) {
+function selectPageSize(next: number) {
+  if (props.disabled) return
+  sizeMenuOpen.value = false
+  if (next > 0 && next !== pageSize.value) {
     pageSize.value = next
     page.value = 1
   }
 }
+
+function onDocumentClick(event: MouseEvent) {
+  if (!sizeMenuOpen.value || !sizeMenuRef.value) return
+  if (!sizeMenuRef.value.contains(event.target as Node)) {
+    sizeMenuOpen.value = false
+  }
+}
+
+function onDocumentKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape' && sizeMenuOpen.value) {
+    sizeMenuOpen.value = false
+  }
+}
+
+onMounted(() => {
+  if (!import.meta.client) return
+  document.addEventListener('mousedown', onDocumentClick)
+  document.addEventListener('keydown', onDocumentKeydown)
+})
+
+onBeforeUnmount(() => {
+  if (!import.meta.client) return
+  document.removeEventListener('mousedown', onDocumentClick)
+  document.removeEventListener('keydown', onDocumentKeydown)
+})
 </script>
 
 <template>
@@ -69,27 +97,55 @@ function onPageSizeChange(event: Event) {
         </template>
       </p>
 
-      <div v-if="showPageSize" class="flex items-center gap-2">
+      <div v-if="showPageSize" ref="sizeMenuRef" class="relative flex items-center gap-2">
         <label :for="selectId" class="text-slate-500 dark:text-slate-400 whitespace-nowrap">
           Por página
         </label>
-        <div class="relative inline-flex items-center">
-          <select
-            :id="selectId"
-            :value="pageSize"
-            :disabled="disabled"
-            class="page-size-select rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 tabular-nums focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 disabled:opacity-50"
-            @change="onPageSizeChange"
+        <button
+          :id="selectId"
+          type="button"
+          role="combobox"
+          aria-haspopup="listbox"
+          :aria-expanded="sizeMenuOpen"
+          :disabled="disabled"
+          :class="[
+            'page-size-select justify-between rounded-lg border bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 tabular-nums transition-colors',
+            'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/20 disabled:opacity-50',
+            sizeMenuOpen
+              ? 'border-accent ring-2 ring-accent/20'
+              : 'border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600',
+          ]"
+          @click="sizeMenuOpen = !sizeMenuOpen"
+        >
+          <span>{{ pageSize }}</span>
+          <Icon name="i-heroicons-chevron-up-down" class="h-3.5 w-3.5 text-slate-400 shrink-0" />
+        </button>
+
+        <Transition name="integrity-pagesize-pop">
+          <div
+            v-if="sizeMenuOpen"
+            role="listbox"
+            class="absolute bottom-full right-0 z-50 mb-1.5 min-w-[4.75rem] rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1 shadow-lg ring-1 ring-slate-950/5 dark:ring-white/5"
           >
-            <option v-for="size in pageSizeOptions" :key="size" :value="size">
-              {{ size }}
-            </option>
-          </select>
-          <Icon
-            name="i-heroicons-chevron-down"
-            class="pointer-events-none absolute right-2 h-3.5 w-3.5 text-slate-400"
-          />
-        </div>
+            <button
+              v-for="size in pageSizeOptions"
+              :key="size"
+              type="button"
+              role="option"
+              :aria-selected="size === pageSize"
+              :class="[
+                'flex w-full items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 text-xs tabular-nums transition-colors',
+                size === pageSize
+                  ? 'bg-brand-50 dark:bg-brand-950/70 text-accent dark:text-brand-200 font-semibold'
+                  : 'text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800',
+              ]"
+              @click="selectPageSize(size)"
+            >
+              <span>{{ size }}</span>
+              <Icon v-if="size === pageSize" name="i-heroicons-check" class="h-3.5 w-3.5 text-accent dark:text-brand-300" />
+            </button>
+          </div>
+        </Transition>
       </div>
     </div>
 
@@ -142,3 +198,17 @@ function onPageSizeChange(event: Event) {
     </div>
   </nav>
 </template>
+
+<style scoped>
+.integrity-pagesize-pop-enter-active,
+.integrity-pagesize-pop-leave-active {
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  transform-origin: bottom right;
+}
+
+.integrity-pagesize-pop-enter-from,
+.integrity-pagesize-pop-leave-to {
+  opacity: 0;
+  transform: translateY(4px) scale(0.97);
+}
+</style>

@@ -24,9 +24,10 @@ const notificationEmails = ref<string[]>([
 ])
 
 const envOptions: IntegritySelectOption[] = [
-  { label: 'Desarrollo (DEV)', value: 'dev' },
-  { label: 'Calidad (QA)', value: 'qa' },
-  { label: 'Producción (PROD)', value: 'prod' },
+  { label: 'Desarrollo (DEV)', value: 'dev', description: 'Pruebas locales y despliegues de rama', meta: 'DEV' },
+  { label: 'Calidad (QA)', value: 'qa', description: 'Validación funcional y pruebas UAT', meta: 'QA' },
+  { label: 'Producción (PROD)', value: 'prod', description: 'Cluster productivo con monitoreo 24/7', meta: 'PROD' },
+  { label: 'Contingencia (DR)', value: 'dr', description: 'Entorno reservado solo lectura', meta: 'DR', disabled: true },
 ]
 
 const tabItems: IntegrityTabItem[] = [
@@ -117,6 +118,57 @@ const advancedInputsCode = `<div class="form-grid-2">
 const tabsCode = `<IntegrityTabs v-model="activeTab" :items="tabItems">
   <template #panel-general>Contenido de la pestaña General</template>
 </IntegrityTabs>`
+
+const sampleJsonPayload = {
+  service: 'integrity-webhook-dispatcher',
+  version: '1.4.2',
+  status: 'operational',
+  latencyMs: 128,
+  retriesEnabled: true,
+  lastError: null,
+  endpoints: [
+    { region: 'mx-central', httpStatus: 200, healthy: true },
+    { region: 'us-east', httpStatus: 200, healthy: true },
+  ],
+}
+
+const sampleMarkdownDoc = `### Reporte de incidente #408
+
+El servicio \`integrity-api\` completó la reconexión automática tras detectar latencia en el procesador financiero.
+
+> **Resumen operativo:** todos los lotes pendientes fueron reencolados sin pérdida de registros.
+
+| Servicio | Instancias | Estado | Latencia |
+| --- | --- | --- | --- |
+| \`integrity-api\` | 4 | **Operacional** | 128 ms |
+| \`worker-notify\` | 2 | **Operacional** | 64 ms |
+
+#### Payload de respuesta verificado
+
+\`\`\`json
+{
+  "batchId": "LOTE-2026-0408",
+  "processed": 1482,
+  "failed": 0,
+  "verified": true
+}
+\`\`\`
+
+- Revisa los logs en vivo con \`pm2 logs integrity-api --lines 100\`.
+- Consulta el [tablero de estado](/data) para auditar los folios.`
+
+const samplePm2Logs = [
+  '0|integrity-api | 2026-11-23 17:30:01.102 \u001b[32mREADY\u001b[0m Nitro server listening on http://0.0.0.0:3000',
+  '0|integrity-api | 2026-11-23 17:30:04.418 INFO GET /api/health 200 12ms',
+  '1|worker-sync   | 2026-11-23 17:30:11.005 INFO Dispatching batch LOTE-2026-0408 (1482 items)',
+  '1|worker-sync   | 2026-11-23 17:30:14.892 WARN Upstream response slow (1840ms) — retrying attempt 1/3',
+  '0|integrity-api | 2026-11-23 17:30:18.210 ERROR POST /api/webhooks/bank 502 ECONNREFUSED 10.0.4.22:8443',
+  '1|worker-sync   | 2026-11-23 17:30:21.540 \u001b[32mSUCCESS\u001b[0m Batch LOTE-2026-0408 synced 200 142ms',
+]
+
+const codeMarkdownDemoSnippet = `<IntegrityCodeBlock title="response.json" language="json" :code="payload" />
+<IntegrityMarkdown :content="markdownWithJson" />
+<IntegrityTerminalLog title="pm2 logs integrity-api" :logs="pm2Lines" />`
 </script>
 
 <template>
@@ -198,9 +250,10 @@ const tabsCode = `<IntegrityTabs v-model="activeTab" :items="tabItems">
         />
         <IntegritySelect
           v-model="sampleEnv"
-          label="Entorno objetivo"
+          label="Entorno objetivo (Combobox custom)"
           :options="envOptions"
-          hint="Selecciona el ambiente de despliegue."
+          searchable
+          hint="Menú desplegable estilizado con búsqueda, descripciones y navegación por teclado."
         />
         <IntegrityInput
           v-model="sampleEmail"
@@ -338,6 +391,47 @@ const tabsCode = `<IntegrityTabs v-model="activeTab" :items="tabItems">
         </div>
       </IntegrityCard>
     </div>
+
+    <ShowcaseSection
+      title="Código JSON, Markdown y Logs de Terminal (PM2)"
+      description="Componentes dedicados para mostrar payloads JSON formateados, reportes Markdown con bloques de código y salida de consola PM2 con colores ANSI y filtros por severidad."
+      :code="codeMarkdownDemoSnippet"
+    >
+      <div class="space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+          <div class="space-y-2">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
+              IntegrityCodeBlock (JSON)
+            </p>
+            <IntegrityCodeBlock
+              title="webhook-status.json"
+              language="json"
+              :code="sampleJsonPayload"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
+              IntegrityMarkdown (Markdown + JSON + Tabla)
+            </p>
+            <div class="rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-900/40 p-5">
+              <IntegrityMarkdown :content="sampleMarkdownDoc" />
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
+            IntegrityTerminalLog (PM2 / Consola con ANSI y filtros)
+          </p>
+          <IntegrityTerminalLog
+            title="pm2 logs integrity-api --lines 100"
+            status="online"
+            :logs="samplePm2Logs"
+          />
+        </div>
+      </div>
+    </ShowcaseSection>
 
     <ShowcaseSection
       title="IntegritySkeleton"

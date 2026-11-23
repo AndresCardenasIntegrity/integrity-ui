@@ -201,7 +201,7 @@
   }
 
   .page-size-select {
-    @apply inline-flex items-center appearance-none !w-[4.75rem] !min-w-[4.75rem] !max-w-[4.75rem] py-1.5 !pl-2.5 !pr-7 text-sm leading-tight;
+    @apply inline-flex items-center appearance-none !w-[4.75rem] !min-w-[4.75rem] !max-w-[4.75rem] py-1.5 !px-2.5 text-sm leading-tight;
     box-sizing: border-box;
     -webkit-appearance: none;
     -moz-appearance: none;

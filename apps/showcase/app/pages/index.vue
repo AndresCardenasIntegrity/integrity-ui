@@ -421,33 +421,18 @@ async function triggerCriticalAction() {
             subtitle="Configura GitHub Packages y extiende el Layer oficial."
           >
             <div class="space-y-4">
-              <div>
-                <div class="flex items-center justify-between mb-1.5">
-                  <span class="text-xs font-medium text-slate-600 dark:text-zinc-400">1. Archivo <code class="font-mono">.npmrc</code></span>
-                  <button
-                    type="button"
-                    class="text-xs text-accent dark:text-brand-300 hover:underline"
-                    @click="copyText(npmrcSnippet, '.npmrc')"
-                  >
-                    Copiar
-                  </button>
-                </div>
-                <pre class="rounded-lg bg-zinc-950 text-zinc-100 p-3.5 font-mono text-xs overflow-x-auto scrollbar-thin"><code>{{ npmrcSnippet }}</code></pre>
-              </div>
-
-              <div>
-                <div class="flex items-center justify-between mb-1.5">
-                  <span class="text-xs font-medium text-slate-600 dark:text-zinc-400">2. Extiende en <code class="font-mono">nuxt.config.ts</code></span>
-                  <button
-                    type="button"
-                    class="text-xs text-accent dark:text-brand-300 hover:underline"
-                    @click="copyText(nuxtConfigSnippet, 'nuxt.config.ts')"
-                  >
-                    Copiar
-                  </button>
-                </div>
-                <pre class="rounded-lg bg-zinc-950 text-zinc-100 p-3.5 font-mono text-xs overflow-x-auto scrollbar-thin"><code>{{ nuxtConfigSnippet }}</code></pre>
-              </div>
+              <IntegrityCodeBlock
+                title=".npmrc"
+                language="bash"
+                :code="npmrcSnippet"
+                :show-line-numbers="false"
+              />
+              <IntegrityCodeBlock
+                title="nuxt.config.ts"
+                language="ts"
+                :code="nuxtConfigSnippet"
+                :show-line-numbers="false"
+              />
             </div>
           </IntegrityCard>
 
@@ -459,19 +444,12 @@ async function triggerCriticalAction() {
               <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
                 El paquete <code class="font-mono text-xs break-all text-slate-900 dark:text-zinc-100">@andrescardenasintegrity/integrity-tokens</code> no tiene dependencias de Vue ni Nuxt y ofrece exports duales ESM/CJS.
               </p>
-              <div>
-                <div class="flex items-center justify-between mb-1.5">
-                  <span class="text-xs font-medium text-slate-600 dark:text-zinc-400">tailwind.config.js</span>
-                  <button
-                    type="button"
-                    class="text-xs text-accent dark:text-brand-300 hover:underline"
-                    @click="copyText(reactPresetSnippet, 'Preset Tailwind')"
-                  >
-                    Copiar
-                  </button>
-                </div>
-                <pre class="rounded-lg bg-zinc-950 text-zinc-100 p-3.5 font-mono text-xs overflow-x-auto scrollbar-thin"><code>{{ reactPresetSnippet }}</code></pre>
-              </div>
+              <IntegrityCodeBlock
+                title="tailwind.config.js"
+                language="js"
+                :code="reactPresetSnippet"
+                :show-line-numbers="false"
+              />
             </div>
           </IntegrityCard>
         </div>

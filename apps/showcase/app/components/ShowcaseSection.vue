@@ -1,24 +1,19 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
+import type { IntegrityCodeLanguage } from '@andrescardenasintegrity/integrity-ui-nuxt/app/utils/codeHighlight'
 
-const props = defineProps<{
+withDefaults(defineProps<{
   title: string
   description?: string
   code?: string
-}>()
+  language?: IntegrityCodeLanguage
+}>(), {
+  description: undefined,
+  code: undefined,
+  language: 'vue',
+})
 
-const { success } = useIntegrityToast()
 const activeTab = shallowRef<'preview' | 'code'>('preview')
-
-async function copyCode() {
-  if (!props.code || !import.meta.client) return
-  try {
-    await navigator.clipboard.writeText(props.code)
-    success('Código copiado al portapapeles.')
-  } catch {
-    // ignore clipboard fallback
-  }
-}
 </script>
 
 <template>
@@ -78,25 +73,12 @@ async function copyCode() {
       <slot />
     </div>
 
-    <!-- Code Frame -->
-    <div
+    <!-- Highlighted Code Frame -->
+    <IntegrityCodeBlock
       v-else
-      class="relative rounded-xl border border-slate-200 dark:border-zinc-800 bg-zinc-950 text-zinc-100 overflow-hidden shadow-subtle"
-    >
-      <div class="flex items-center justify-between px-4 py-2 border-b border-zinc-800 bg-zinc-900/70">
-        <span class="font-mono text-[11px] text-zinc-400">vue</span>
-        <button
-          type="button"
-          class="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
-          @click="copyCode"
-        >
-          <Icon name="i-heroicons-clipboard-document" class="h-3.5 w-3.5" />
-          <span>Copiar</span>
-        </button>
-      </div>
-      <div class="p-4 overflow-x-auto scrollbar-thin">
-        <pre class="font-mono text-xs leading-relaxed"><code>{{ code }}</code></pre>
-      </div>
-    </div>
+      :code="code"
+      :language="language"
+      :show-line-numbers="true"
+    />
   </section>
 </template>
