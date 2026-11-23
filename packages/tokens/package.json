@@ -29,7 +29,8 @@
       "import": "./tailwind.preset.js",
       "require": "./tailwind.preset.cjs"
     },
-    "./brand/integrity-mark.svg": "./brand/integrity-mark.svg"
+    "./brand/integrity-mark.svg": "./brand/integrity-mark.svg",
+    "./brand/integrity-favicon.svg": "./brand/integrity-favicon.svg"
   },
   "files": [
     "index.js",

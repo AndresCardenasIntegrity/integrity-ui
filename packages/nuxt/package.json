@@ -20,6 +20,7 @@
   "files": [
     "nuxt.config.ts",
     "app/",
+    "public/",
     "tailwind.config.cjs"
   ],
   "dependencies": {
