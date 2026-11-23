@@ -2,6 +2,10 @@
 import { computed, ref, shallowRef } from 'vue'
 import type { IntegrityTableColumn } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
 
+definePageMeta({
+  layout: 'admin',
+})
+
 const { success } = useIntegrityToast()
 const { confirm } = useIntegrityConfirm()
 
