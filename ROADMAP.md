@@ -8,9 +8,9 @@
 - **`@andrescardenasintegrity/integrity-tokens` (`packages/tokens`)**:
   - 100% agnóstico de framework (listo para Nuxt/Vue hoy y React en el futuro).
   - Paleta **100% Integrity** (`#273679` claro / `#3D4F9C` oscuro), sin capa de temas por cliente por ahora para evitar sobreingeniería.
-  - Incluye `index.js`, `index.d.ts`, `css/theme.css`, `tailwind.preset.js` (cero dependencias) y `brand/integrity-mark.svg`.
+  - Incluye exports duales ESM + CJS (`index.js`, `tokens.cjs`, `index.d.ts`, `tailwind.preset.js`, `tailwind.preset.cjs`), `css/theme.css` y `brand/integrity-mark.svg`.
 - **`@andrescardenasintegrity/integrity-ui-nuxt` (`packages/nuxt`)**:
-  - Nuxt 4 Layer con `tailwind.config.js` (auto-descubierto por `@nuxtjs/tailwindcss`; **no** agregar `configPath` en `nuxt.config.ts` para evitar merge circular en capas) cargando `@tailwindcss/forms` y `@tailwindcss/typography` vía `createRequire`.
+  - Nuxt 4 Layer con `tailwind.config.cjs` (auto-descubierto por `@nuxtjs/tailwindcss`; **no** agregar `configPath` en `nuxt.config.ts` para evitar merge circular, y mantener `.cjs` para evitar ciclos `interopDefault` en `jiti`/`klona` cuando se instala desde `node_modules` en Node 22/24) cargando `@tailwindcss/forms` y `@tailwindcss/typography`.
   - 5 composables (`useIntegrityTheme`, `useIntegritySidebar`, `useIntegrityToast`, `useIntegrityConfirm`, `useIntegritySensitive`).
   - 25 componentes base y operativos en `packages/nuxt/app/components/` (incluyendo `IntegrityPagination`, `IntegrityTabs`, `IntegrityStatCard`, `IntegritySkeleton`, `IntegrityDrawer`, `IntegrityMultiSelect` e `IntegrityEmailListInput`) y utilidades (`emailList.ts`, `pagination.ts`).
 - **`@andrescardenasintegrity/integrity-showcase` (`apps/showcase`)**:
@@ -36,8 +36,9 @@
 - 7 componentes agregados a `@andrescardenasintegrity/integrity-ui-nuxt` y documentados en `apps/showcase`.
 - Plantilla `starters/nuxt-client/` creada y tests unitarios configurados con Vitest.
 
-### Paso 3 — Prueba real en proyecto cliente externo
-- Validar la instalación y compilación de `@andrescardenasintegrity/integrity-ui-nuxt` desde un proyecto Nuxt 4 fuera del monorepo (`pnpm build`, fuentes Inter/JetBrains Mono, Heroicons locales, Light/Dark y componentes).
+### Paso 3 — Prueba real en proyecto cliente externo *(Completado)*
+- Validado instalando los tarballs empaquetados de `@andrescardenasintegrity/integrity-ui-nuxt` y `@andrescardenasintegrity/integrity-tokens` en una copia aislada de `starters/nuxt-client/` fuera del monorepo (`pnpm install`, `nuxt typecheck`, `nuxt build`, SSR HTTP 200 en `/` y `/login`, fuentes `Inter`/`JetBrains Mono`, Heroicons locales y CSS Light/Dark).
+- Hallazgo corregido durante la prueba: migración de `tailwind.config.js` a `tailwind.config.cjs` + exports CJS en `integrity-tokens` para evitar el ciclo `klona` de `jiti@1.21.7` al cargar capas ESM desde `node_modules` bajo Node 24.
 
 ### Paso 4 — Deploy estático del Showcase
 - Configurar `pnpm generate` y workflow (GitHub Pages o salida estática para VPS) para que todo el equipo consulte **Integrity UI/UX** por URL.

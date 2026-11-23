@@ -21,16 +21,22 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.js"
+      "import": "./index.js",
+      "require": "./tokens.cjs"
     },
     "./css": "./css/theme.css",
-    "./preset": "./tailwind.preset.js",
+    "./preset": {
+      "import": "./tailwind.preset.js",
+      "require": "./tailwind.preset.cjs"
+    },
     "./brand/integrity-mark.svg": "./brand/integrity-mark.svg"
   },
   "files": [
     "index.js",
     "index.d.ts",
+    "tokens.cjs",
     "tailwind.preset.js",
+    "tailwind.preset.cjs",
     "css/",
     "brand/"
   ]

@@ -20,7 +20,7 @@
   "files": [
     "nuxt.config.ts",
     "app/",
-    "tailwind.config.js"
+    "tailwind.config.cjs"
   ],
   "dependencies": {
     "@andrescardenasintegrity/integrity-tokens": "workspace:*",

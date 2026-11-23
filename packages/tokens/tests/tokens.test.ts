@@ -1,6 +1,9 @@
+import { createRequire } from 'node:module'
 import { describe, expect, it } from 'vitest'
 import { integrityTokens } from '../index.js'
 import { integrityTailwindPreset } from '../tailwind.preset.js'
+
+const require = createRequire(import.meta.url)
 
 describe('@andrescardenasintegrity/integrity-tokens', () => {
   it('exposes official Integrity brand accent tokens for light and dark modes', () => {
@@ -24,5 +27,12 @@ describe('@andrescardenasintegrity/integrity-tokens', () => {
   it('provides a framework-agnostic Tailwind preset with class darkMode', () => {
     expect(integrityTailwindPreset.darkMode).toBe('class')
     expect(integrityTailwindPreset.theme.extend.colors.accent.DEFAULT).toBe('var(--color-accent)')
+  })
+
+  it('loads the CJS preset without circular default references for Tailwind/jiti consumers', () => {
+    const cjsPreset = require('../tailwind.preset.cjs')
+    expect(cjsPreset.darkMode).toBe('class')
+    expect(cjsPreset.default).toBeUndefined()
+    expect(cjsPreset.theme.extend.colors.brand['600']).toBe('#273679')
   })
 })

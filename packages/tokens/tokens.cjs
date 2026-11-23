@@ -1,0 +1,87 @@
+const integrityTokens = {
+  brand: {
+    50: '#eef1fa',
+    100: '#dce2f5',
+    200: '#bac7eb',
+    300: '#8fa3de',
+    400: '#6279cc',
+    500: '#3d4f9c',
+    600: '#273679',
+    700: '#1e2b61',
+    800: '#17214c',
+    900: '#111839',
+    950: '#0a0f24',
+  },
+  accent: {
+    DEFAULT: '#273679',
+    hover: '#1e2b61',
+    light: '#eef1fa',
+    dark: '#3d4f9c',
+    darkHover: '#4f63b5',
+  },
+  status: {
+    operational: '#10B981',
+    degraded: '#F59E0B',
+    down: '#EF4444',
+    maintenance: '#6366F1',
+  },
+  surface: {
+    light: {
+      primary: '#FFFFFF',
+      secondary: '#FAFAFA',
+      tertiary: '#F5F5F5',
+      border: '#E5E5E5',
+      borderLight: '#F0F0F0',
+      textPrimary: '#0F172A',
+      textSecondary: '#475569',
+      textTertiary: '#94A3B8',
+    },
+    dark: {
+      primary: '#0A0A0A',
+      secondary: '#141414',
+      tertiary: '#1A1A1A',
+      border: '#2A2A2A',
+      borderLight: '#1F1F1F',
+      textPrimary: '#F8FAFC',
+      textSecondary: '#A1A1AA',
+      textTertiary: '#71717A',
+    },
+  },
+  sidebar: {
+    light: {
+      bg: '#FFFFFF',
+      foreground: '#0F172A',
+      primary: '#273679',
+      primaryForeground: '#FFFFFF',
+      accent: '#F1F5F9',
+      accentForeground: '#0F172A',
+      border: '#E2E8F0',
+    },
+    dark: {
+      bg: '#0F172A',
+      foreground: '#F8FAFC',
+      primary: '#3D4F9C',
+      primaryForeground: '#FFFFFF',
+      accent: '#1E293B',
+      accentForeground: '#F8FAFC',
+      border: '#1E293B',
+    },
+  },
+  typography: {
+    sans: ['Inter', 'system-ui', 'sans-serif'],
+    mono: ['JetBrains Mono', 'monospace'],
+  },
+  radii: {
+    sm: '0.25rem',
+    DEFAULT: '0.5rem',
+    lg: '0.75rem',
+    xl: '1rem',
+  },
+  shadows: {
+    sm: '0 1px 2px rgba(0, 0, 0, 0.04)',
+    md: '0 2px 8px rgba(0, 0, 0, 0.06)',
+    lg: '0 4px 16px rgba(0, 0, 0, 0.08)',
+  },
+}
+
+module.exports = integrityTokens
