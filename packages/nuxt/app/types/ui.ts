@@ -90,3 +90,25 @@ export interface IntegritySelectOption {
   value: string
   disabled?: boolean
 }
+
+export interface IntegrityTabItem {
+  value: string
+  label: string
+  icon?: string
+  badge?: string | number
+  disabled?: boolean
+}
+
+export interface IntegrityMultiSelectOption {
+  value: string
+  label: string
+  description?: string
+  meta?: string
+  disabled?: boolean
+}
+
+export interface IntegrityEmailListValidation {
+  valid: string[]
+  invalid: string[]
+  duplicates: string[]
+}

@@ -11,6 +11,8 @@ integrity-ui/
 │   └── nuxt/                 # @andrescardenasintegrity/integrity-ui-nuxt — Nuxt 4 Layer con componentes y composables Vue 3
 ├── apps/
 │   └── showcase/             # @andrescardenasintegrity/integrity-showcase — Portal web interactivo de documentación, componentes y templates
+├── starters/
+│   └── nuxt-client/          # Plantilla mínima Nuxt 4 lista para copiar en proyectos de nuevos clientes
 ├── .github/workflows/        # CI (ci.yml) y publicación automática a GitHub Packages (publish.yml)
 ├── .npmrc.consumer.example   # Plantilla .npmrc para proyectos cliente
 └── DESIGN_SYSTEM.md          # Reglas visuales oficiales para desarrolladores y agentes de IA
@@ -23,6 +25,9 @@ Requisitos: **Node.js >= 22** y **pnpm** (`12.11.2`).
 ```bash
 pnpm install
 pnpm dev
+pnpm test
+pnpm typecheck
+pnpm build
 ```
 
 Abre `http://127.0.0.1:3000` para explorar el portal **Integrity UI/UX Showcase**.

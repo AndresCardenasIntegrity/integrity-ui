@@ -17,8 +17,13 @@
     "generate": "pnpm --filter @andrescardenasintegrity/integrity-showcase generate",
     "preview": "pnpm --filter @andrescardenasintegrity/integrity-showcase preview",
     "typecheck": "pnpm --filter @andrescardenasintegrity/integrity-showcase typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "pack:tokens": "pnpm --filter @andrescardenasintegrity/integrity-tokens pack",
     "pack:nuxt": "pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt pack"
   },
-  "packageManager": "pnpm@12.11.2"
+  "packageManager": "pnpm@12.11.2",
+  "devDependencies": {
+    "vitest": "^5.1.1"
+  }
 }

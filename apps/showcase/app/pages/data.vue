@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { computed, shallowRef } from 'vue'
+import { computed, shallowRef, watch } from 'vue'
 import type { IntegrityTableColumn, IntegrityTimelineEvent } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
 
 const search = shallowRef('')
 const statusFilter = shallowRef('all')
 const loadingDemo = shallowRef(false)
+const statsLoading = shallowRef(false)
+const page = shallowRef(1)
+const pageSize = shallowRef(4)
+
+watch([search, statusFilter], () => {
+  page.value = 1
+})
 
 const columns: IntegrityTableColumn[] = [
   { key: 'folio', label: 'Folio', type: 'mono' },
@@ -26,6 +33,10 @@ const allRows = [
   { id: 2, folio: 'SOL-2026-0143', cliente: 'Grupo Industrial Norte', clabe: '002180700481920345', estatus: 'warn', monto: 129300, actualizado: '2026-11-23T12:45:00Z' },
   { id: 3, folio: 'SOL-2026-0144', cliente: 'Logística Pacífico', clabe: '072180009182736451', estatus: 'err', monto: 17420, actualizado: '2026-11-23T11:10:00Z' },
   { id: 4, folio: 'SOL-2026-0145', cliente: 'Servicios Médicos Sur', clabe: '014180655019283746', estatus: 'ok', monto: 92150, actualizado: '2026-11-23T10:05:00Z' },
+  { id: 5, folio: 'SOL-2026-0146', cliente: 'Energía Central MX', clabe: '044180221908374622', estatus: 'ok', monto: 63800, actualizado: '2026-11-23T09:42:00Z' },
+  { id: 6, folio: 'SOL-2026-0147', cliente: 'Comercializadora Andina', clabe: '021180998172635401', estatus: 'warn', monto: 31200, actualizado: '2026-11-23T09:15:00Z' },
+  { id: 7, folio: 'SOL-2026-0148', cliente: 'Constructora del Valle', clabe: '012180771625344510', estatus: 'ok', monto: 215000, actualizado: '2026-11-23T08:50:00Z' },
+  { id: 8, folio: 'SOL-2026-0149', cliente: 'Fintech Enlace Digital', clabe: '072180550192837465', estatus: 'ok', monto: 84900, actualizado: '2026-11-23T08:12:00Z' },
 ]
 
 const filteredRows = computed(() => {
@@ -35,6 +46,11 @@ const filteredRows = computed(() => {
     const matchQuery = !q || row.folio.toLowerCase().includes(q) || row.cliente.toLowerCase().includes(q)
     return matchStatus && matchQuery
   })
+})
+
+const paginatedRows = computed(() => {
+  const start = (page.value - 1) * pageSize.value
+  return filteredRows.value.slice(start, start + pageSize.value)
 })
 
 const events: IntegrityTimelineEvent[] = [
@@ -73,12 +89,62 @@ const events: IntegrityTimelineEvent[] = [
   <div class="space-y-8">
     <IntegrityPageHeader
       eyebrow="Datos y Trazabilidad"
-      title="Tablas, Datos Sensibles y Timeline"
+      title="KPIs, Tablas, Paginación y Timeline"
       subtitle="Patrones estandarizados para módulos operativos, registros y auditoría."
-    />
+    >
+      <template #actions>
+        <IntegrityButton size="sm" variant="outline" @click="statsLoading = !statsLoading">
+          {{ statsLoading ? 'Mostrar KPIs' : 'Simular Skeleton KPIs' }}
+        </IntegrityButton>
+      </template>
+    </IntegrityPageHeader>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <IntegrityStatCard
+        label="Solicitudes procesadas"
+        :value="1482"
+        delta="+12.4%"
+        delta-tone="operational"
+        trend="up"
+        icon="i-heroicons-document-check"
+        tone="brand"
+        hint="vs mes anterior"
+        :loading="statsLoading"
+      />
+      <IntegrityStatCard
+        label="Disponibilidad API"
+        value="99.96%"
+        delta="Operacional"
+        delta-tone="operational"
+        trend="flat"
+        icon="i-heroicons-signal"
+        tone="operational"
+        :loading="statsLoading"
+      />
+      <IntegrityStatCard
+        label="Pendientes de revisión"
+        :value="14"
+        delta="+3 hoy"
+        delta-tone="degraded"
+        trend="up"
+        icon="i-heroicons-clock"
+        tone="degraded"
+        :loading="statsLoading"
+      />
+      <IntegrityStatCard
+        label="Rechazos críticos"
+        :value="2"
+        delta="-50%"
+        delta-tone="operational"
+        trend="down"
+        icon="i-heroicons-exclamation-triangle"
+        tone="down"
+        :loading="statsLoading"
+      />
+    </div>
 
     <IntegrityCard
-      title="IntegrityDataTable + IntegritySensitiveCell"
+      title="IntegrityDataTable + IntegritySensitiveCell + IntegrityPagination"
       subtitle="Haz clic en una CLABE enmascarada para revelarla con confirmación."
       padding="none"
     >
@@ -120,7 +186,7 @@ const events: IntegrityTimelineEvent[] = [
 
       <IntegrityDataTable
         :columns="columns"
-        :rows="filteredRows"
+        :rows="paginatedRows"
         :loading="loadingDemo"
       >
         <template #cell-clabe="{ row }">
@@ -132,6 +198,16 @@ const events: IntegrityTimelineEvent[] = [
           />
         </template>
       </IntegrityDataTable>
+
+      <template #footer>
+        <IntegrityPagination
+          v-model:page="page"
+          v-model:page-size="pageSize"
+          :total="filteredRows.length"
+          :page-size-options="[4, 8, 20]"
+          item-label="solicitudes"
+        />
+      </template>
     </IntegrityCard>
 
     <IntegrityCard
