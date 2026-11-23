@@ -47,7 +47,7 @@ const selectId = computed(() => props.id ?? generatedId)
         :aria-invalid="Boolean(error)"
         style="background-image: none;"
         :class="[
-          'block w-full appearance-none rounded-lg border pl-3 pr-9 py-2 text-sm transition-colors',
+          'flex items-center w-full appearance-none rounded-lg border pl-3 pr-9 py-2 text-sm transition-colors',
           'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100',
           'focus:outline-none focus:ring-2 focus:ring-offset-0',
           error

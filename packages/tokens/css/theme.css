@@ -91,6 +91,16 @@
     @apply font-sans text-base antialiased bg-[#fafafa] text-[#0f172a] dark:bg-[#0a0a0a] dark:text-slate-50;
   }
 
+  /* Evitar doble flecha / salto de línea en Chromium con Customizable Select (::picker-icon) */
+  select::picker-icon {
+    display: none !important;
+    content: none !important;
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
   /* Scrollbars discretos (Firefox + Chromium/Safari) */
   * {
     scrollbar-width: thin;
@@ -191,7 +201,7 @@
   }
 
   .page-size-select {
-    @apply inline-block appearance-none !w-[4.75rem] !min-w-[4.75rem] !max-w-[4.75rem] py-1.5 !pl-2.5 !pr-7 text-sm leading-tight;
+    @apply inline-flex items-center appearance-none !w-[4.75rem] !min-w-[4.75rem] !max-w-[4.75rem] py-1.5 !pl-2.5 !pr-7 text-sm leading-tight;
     box-sizing: border-box;
     -webkit-appearance: none;
     -moz-appearance: none;
