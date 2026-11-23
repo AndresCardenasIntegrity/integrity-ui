@@ -1,4 +1,4 @@
-# Integrity UI/UX — Component Reference (28 Components)
+# Integrity UI/UX — Component Reference (29 Components)
 
 All components are auto-imported by Nuxt 4 when extending `@andrescardenasintegrity/integrity-ui-nuxt`. Import TypeScript interfaces from `@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui`.
 
@@ -27,6 +27,11 @@ Surface container with optional header, actions, and footer.
 
 ### `IntegrityMark`
 Geometric Integrity SVG isotipo inheriting `currentColor` (`class="h-6 w-6 text-accent"`).
+
+### `IntegrityErrorPage`
+Standard branded error & 404 page (automatically wired via the layer's `app/error.vue`). Handles `404`, `403`, `401`, and `500` with Spanish copy, monospace HTTP status badge, missing route pill, Light/Dark toggle, and `clearError({ redirect })` recovery.
+- **Props:** `error?: { statusCode?: number; statusMessage?: string; message?: string; url?: string } | null`, `statusCode?: number`, `title?: string`, `description?: string`, `homePath?: string` (`'/'`), `homeLabel?: string` (`'Volver al inicio'`), `showBack?: boolean` (`true`), `showDetails?: boolean` (`false` — keep `false` in production).
+- **Slots:** `actions`.
 
 ---
 

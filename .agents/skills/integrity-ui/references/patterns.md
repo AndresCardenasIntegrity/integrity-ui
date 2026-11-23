@@ -196,7 +196,29 @@ Use this standard layout whenever building a public or multi-environment **Table
 
 *(Full interactive reference implementation in `apps/showcase/app/pages/templates/status.vue`.)*
 
-## 5. React + Tailwind Consumer Pattern
+## 5. Customizing 404 & Error Pages (`app/error.vue`)
+
+The layer automatically provides `app/error.vue` rendering `<IntegrityErrorPage :error="error" />`. Only create a local `app/error.vue` when customizing redirect paths or extra recovery actions — never expose stack traces or raw backend error messages in production:
+
+```vue
+<script setup lang="ts">
+import type { NuxtError } from '#app'
+
+defineProps<{
+  error: NuxtError
+}>()
+</script>
+
+<template>
+  <IntegrityErrorPage
+    :error="error"
+    home-path="/dashboard"
+    home-label="Ir al panel principal"
+  />
+</template>
+```
+
+## 6. React + Tailwind Consumer Pattern
 
 ```js
 // tailwind.config.js

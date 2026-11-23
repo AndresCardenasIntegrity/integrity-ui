@@ -36,3 +36,10 @@ Este documento define el estándar visual obligatorio para todos los proyectos w
 - Toda página inicia con `IntegrityPageHeader` (`.page-header`, `.page-title`, `.page-subtitle`, `.page-actions`).
 - Acciones destructivas requieren `useIntegrityConfirm()` con `type: 'danger'` (y `confirmDelaySeconds` si afectan datos críticos).
 - Notificaciones transitorias usan `useIntegrityToast()` — nunca `window.alert()` ni `window.confirm()`.
+
+## 5. Páginas de error y rutas no encontradas (404 / 403 / 500)
+
+- **Nunca dejar la página de error por defecto de Nuxt/Vite:** el layer `@andrescardenasintegrity/integrity-ui-nuxt` provee `app/error.vue` conectado a `IntegrityErrorPage`, heredado automáticamente por todos los proyectos.
+- **Identidad y recuperación clara:** toda pantalla de ruta no encontrada (`404`) debe mostrar la marca Integrity, el código HTTP en `font-mono` (`HTTP 404`), la ruta solicitada, soporte Light/Dark y al menos dos acciones claras (`Volver al inicio` vía `clearError({ redirect: '/' })` y `Regresar`).
+- **Seguridad en producción:** nunca exponer stack traces, consultas SQL, rutas internas del servidor ni mensajes crudos de backend al usuario final (`showDetails` debe permanecer en `false` en producción).
+- **Personalización:** si un proyecto requiere enlaces o textos propios, crear `app/error.vue` local envolviendo `<IntegrityErrorPage :error="error" />` y usando sus props (`home-path`, `home-label`, `title`, `description`) o el slot `#actions`.

@@ -2,7 +2,7 @@
 name: integrity-ui
 description: >-
   Official design system and UI engineering skill for Integrity web applications
-  built with @andrescardenasintegrity/integrity-ui-nuxt (Nuxt 4 Layer, 28 Vue 3
+  built with @andrescardenasintegrity/integrity-ui-nuxt (Nuxt 4 Layer, 29 Vue 3
   components, 5 composables, 5 utilities) and @andrescardenasintegrity/integrity-tokens
   (framework-agnostic CSS variables and Tailwind preset for Nuxt, Vue, and React).
   Use this skill whenever creating, updating, or reviewing Integrity web interfaces,
@@ -25,6 +25,7 @@ Use this skill to build consistent, production-grade web interfaces aligned with
 6. **No Native Browser Dialogs:** Never use `window.alert()`, `window.confirm()`, or native `<select>` dropdowns. Always use `useIntegrityToast()`, `useIntegrityConfirm()`, and `<IntegritySelect>` / `<IntegrityMultiSelect>`.
 7. **Destructive Actions:** Always gate irreversible actions with `useIntegrityConfirm()` using `type: 'danger'` (and `confirmDelaySeconds: 3` for critical deletions).
 8. **Code, Markdown & PM2 Logs:** Always render JSON payloads/code snippets with `<IntegrityCodeBlock>`, Markdown (including embedded JSON/tables) with `<IntegrityMarkdown>`, and PM2/console output with `<IntegrityTerminalLog>`.
+9. **404 & Error Pages:** Never leave the default Nuxt error screen. The layer provides `app/error.vue` backed by `<IntegrityErrorPage>` (inherited automatically for 404/403/401/500 with `clearError({ redirect })`, Light/Dark mode, and missing path display). Never expose raw stack traces or backend errors in production (`show-details` defaults to `false`).
 
 ## 2. Project Setup (Nuxt 4 Consumer)
 
@@ -64,13 +65,13 @@ export default defineNuxtConfig({
 
 For **React + Tailwind** projects, install `@andrescardenasintegrity/integrity-tokens`, import `@andrescardenasintegrity/integrity-tokens/css`, and register `@andrescardenasintegrity/integrity-tokens/preset` in `tailwind.config.js`.
 
-## 3. Quick Component Inventory (28 Components)
+## 3. Quick Component Inventory (29 Components)
 
 All components are auto-imported in Nuxt 4 when extending `@andrescardenasintegrity/integrity-ui-nuxt`.
 
 | Category | Components |
 |---|---|
-| **Layout & Brand** | `IntegrityAppShell`, `IntegritySidebar`, `IntegrityPageHeader`, `IntegrityCard`, `IntegrityMark` |
+| **Layout & Brand** | `IntegrityAppShell`, `IntegritySidebar`, `IntegrityPageHeader`, `IntegrityCard`, `IntegrityMark`, `IntegrityErrorPage` |
 | **Primitives & Feedback** | `IntegrityButton`, `IntegrityBadge`, `IntegrityAlert`, `IntegrityTabs`, `IntegrityEmptyState`, `IntegrityLogoLoader`, `IntegritySkeleton` |
 | **Forms & Inputs** | `IntegrityInput`, `IntegritySelect` (custom shadcn-style combobox), `IntegrityMultiSelect`, `IntegrityEmailListInput` |
 | **Overlays & Global** | `IntegrityModal`, `IntegrityDrawer`, `IntegrityConfirmDialog`, `IntegrityToastContainer` |
