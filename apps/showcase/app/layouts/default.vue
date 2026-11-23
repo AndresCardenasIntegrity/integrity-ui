@@ -194,10 +194,13 @@ function isActive(to: string, exact = false) {
         </div>
         <div class="flex items-center gap-4">
           <NuxtLink to="/foundations" class="hover:text-slate-900 dark:hover:text-white transition-colors">
-            Tokens
+            Fundamentos
           </NuxtLink>
           <NuxtLink to="/components" class="hover:text-slate-900 dark:hover:text-white transition-colors">
             Componentes
+          </NuxtLink>
+          <NuxtLink to="/data" class="hover:text-slate-900 dark:hover:text-white transition-colors">
+            Datos
           </NuxtLink>
           <NuxtLink to="/templates" class="hover:text-slate-900 dark:hover:text-white transition-colors">
             Plantillas
