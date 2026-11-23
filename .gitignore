@@ -1,0 +1,13 @@
+node_modules
+.nuxt
+.output
+.nitro
+.cache
+dist
+.data
+.env
+.env.local
+*.log
+*.tgz
+.DS_Store
+Thumbs.db

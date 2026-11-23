@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck, Build & Pack
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck showcase
+        run: pnpm typecheck
+
+      - name: Build showcase
+        run: pnpm build
+
+      - name: Verify npm tarballs (pnpm pack)
+        run: |
+          mkdir -p /tmp/integrity-pack-check
+          pnpm --filter @andrescardenasintegrity/integrity-tokens pack --pack-destination /tmp/integrity-pack-check
+          pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt pack --pack-destination /tmp/integrity-pack-check
+          ls -lh /tmp/integrity-pack-check

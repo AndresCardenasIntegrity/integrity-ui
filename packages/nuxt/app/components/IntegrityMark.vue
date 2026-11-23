@@ -1,0 +1,20 @@
+<template>
+  <svg
+    viewBox="0 0 1080 1080"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    class="block"
+  >
+    <g
+      stroke="currentColor"
+      stroke-width="80"
+      stroke-miterlimit="10"
+      transform="translate(540 540) scale(0.78) translate(-540 -540)"
+    >
+      <path d="M62.663 212.634 L616.128 212.634 L616.128 766.099 L62.663 766.099 Z" />
+      <path d="M465.872 465.735 L1019.337 465.735 L1019.337 1019.2 L465.872 1019.2 Z" />
+      <path d="M212.6 62.8 L766.065 62.8 L766.065 616.265 L212.6 616.265 Z" />
+    </g>
+  </svg>
+</template>

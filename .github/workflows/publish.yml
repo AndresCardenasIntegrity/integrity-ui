@@ -1,0 +1,77 @@
+name: Publish Packages to GitHub Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run publish in dry-run mode without uploading to GitHub Packages'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Verify & Publish to GitHub Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@andrescardenasintegrity'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify tag matches package versions
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          TOKENS_VERSION="$(node -p "require('./packages/tokens/package.json').version")"
+          NUXT_VERSION="$(node -p "require('./packages/nuxt/package.json').version")"
+          echo "Tag: $TAG_VERSION | tokens: $TOKENS_VERSION | ui-nuxt: $NUXT_VERSION"
+          if [ "$TAG_VERSION" != "$TOKENS_VERSION" ] || [ "$TAG_VERSION" != "$NUXT_VERSION" ]; then
+            echo "Version mismatch: tag v$TAG_VERSION must match both packages/tokens ($TOKENS_VERSION) and packages/nuxt ($NUXT_VERSION)."
+            exit 1
+          fi
+
+      - name: Typecheck showcase
+        run: pnpm typecheck
+
+      - name: Build showcase
+        run: pnpm build
+
+      - name: Publish @andrescardenasintegrity/integrity-tokens
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            pnpm --filter @andrescardenasintegrity/integrity-tokens publish --no-git-checks --dry-run
+          else
+            pnpm --filter @andrescardenasintegrity/integrity-tokens publish --no-git-checks
+          fi
+
+      - name: Publish @andrescardenasintegrity/integrity-ui-nuxt
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt publish --no-git-checks --dry-run
+          else
+            pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt publish --no-git-checks
+          fi

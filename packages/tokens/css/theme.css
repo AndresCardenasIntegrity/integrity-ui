@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+
+    /* Superficies neutras — Base minimalista Integrity */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #fafafa;
+    --color-bg-tertiary: #f5f5f5;
+
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-tertiary: #94a3b8;
+
+    --color-border: #e2e8f0;
+    --color-border-light: #f1f5f9;
+
+    /* Estados semánticos */
+    --color-operational: #10b981;
+    --color-degraded: #f59e0b;
+    --color-down: #ef4444;
+    --color-maintenance: #6366f1;
+
+    /* Marca 100% Integrity */
+    --color-accent: #273679;
+    --color-accent-hover: #1e2b61;
+    --color-accent-light: #eef1fa;
+
+    /* Sombras sutiles */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+    /* Sidebar (patrón shadcn, marca Integrity) */
+    --sidebar: #ffffff;
+    --sidebar-foreground: #0f172a;
+    --sidebar-primary: #273679;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #f1f5f9;
+    --sidebar-accent-foreground: #0f172a;
+    --sidebar-border: #e2e8f0;
+    --sidebar-ring: #273679;
+    --sidebar-width: 16rem;
+    --sidebar-width-icon: 3.5rem;
+    --sidebar-width-mobile: 18rem;
+    --admin-mobile-nav-h: 3.75rem;
+
+    /* Scrollbar */
+    --scrollbar-size: 10px;
+    --scrollbar-radius: 999px;
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: color-mix(in srgb, #273679 28%, #cbd5e1);
+    --scrollbar-thumb-hover: color-mix(in srgb, #273679 55%, #94a3b8);
+  }
+
+  .dark {
+    color-scheme: dark;
+
+    --color-bg-primary: #0a0a0a;
+    --color-bg-secondary: #141414;
+    --color-bg-tertiary: #1a1a1a;
+
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #a1a1aa;
+    --color-text-tertiary: #71717a;
+
+    --color-border: #27272a;
+    --color-border-light: #1f1f23;
+
+    --color-accent: #3d4f9c;
+    --color-accent-hover: #4f63b5;
+    --color-accent-light: #17214c;
+
+    --sidebar: #0f172a;
+    --sidebar-foreground: #f8fafc;
+    --sidebar-primary: #3d4f9c;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #1e293b;
+    --sidebar-accent-foreground: #f8fafc;
+    --sidebar-border: #1e293b;
+    --sidebar-ring: #3d4f9c;
+
+    --scrollbar-thumb: color-mix(in srgb, #3d4f9c 45%, #475569);
+    --scrollbar-thumb-hover: color-mix(in srgb, #3d4f9c 70%, #94a3b8);
+  }
+
+  body {
+    @apply font-sans text-base antialiased bg-[#fafafa] text-[#0f172a] dark:bg-[#0a0a0a] dark:text-slate-50;
+  }
+
+  /* Scrollbars discretos (Firefox + Chromium/Safari) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--scrollbar-radius);
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .shadow-subtle {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-md);
+  }
+
+  .scrollbar-thin {
+    --scrollbar-size: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    border-width: 2px;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .page-header {
+    @apply mb-6 lg:mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .page-title {
+    @apply text-xl sm:text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50;
+  }
+
+  .page-subtitle {
+    @apply text-sm text-slate-500 dark:text-slate-400 mt-1;
+  }
+
+  .page-actions {
+    @apply flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto;
+  }
+
+  .page-actions > * {
+    @apply w-full sm:w-auto justify-center;
+  }
+
+  .data-table-wrap {
+    @apply overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0;
+  }
+
+  .form-grid-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+  }
+
+  .mobile-card {
+    @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-subtle;
+  }
+
+  .page-size-select {
+    @apply inline-block !w-[4.75rem] !min-w-[4.75rem] !max-w-[4.75rem] py-1.5 !pl-2.5 !pr-8 text-sm;
+    box-sizing: border-box;
+  }
+}
