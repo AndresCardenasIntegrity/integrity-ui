@@ -24,7 +24,7 @@ function handleSubmit() {
 </script>
 
 <template>
-  <div class="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#fafafa] dark:bg-[#0a0a0a]">
+  <div class="relative min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#fafafa] dark:bg-[#0a0a0a]">
     <!-- Left Brand Panel -->
     <section class="hidden lg:flex flex-col justify-between bg-brand-600 text-white p-12 relative overflow-hidden">
       <div class="flex items-center gap-3">
@@ -55,13 +55,8 @@ function handleSubmit() {
     </section>
 
     <!-- Right Form Panel -->
-    <section class="flex flex-col justify-between p-6 sm:p-10">
-      <div class="flex items-center justify-between">
-        <NuxtLink to="/templates">
-          <IntegrityButton variant="ghost" size="sm" icon="i-heroicons-arrow-left">
-            Volver al Showcase
-          </IntegrityButton>
-        </NuxtLink>
+    <section class="flex flex-col justify-between p-6 sm:p-10 pb-24">
+      <div class="flex items-center justify-end">
         <IntegrityButton
           variant="outline"
           size="sm"
@@ -112,5 +107,31 @@ function handleSubmit() {
         Acceso protegido · Integrity UI/UX Template
       </p>
     </section>
+
+    <!-- Floating Template Preview Bar -->
+    <div
+      role="region"
+      aria-label="Controles de vista previa de plantilla"
+      class="fixed bottom-5 right-5 z-[60] flex items-center gap-3 rounded-xl border border-slate-700/80 bg-slate-950/95 px-3.5 py-2 text-white shadow-2xl backdrop-blur-md"
+    >
+      <div class="hidden sm:flex items-center gap-2 pr-1">
+        <span class="inline-flex items-center rounded bg-brand-600 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
+          Plantilla
+        </span>
+        <span class="text-xs font-medium text-slate-200">
+          Login Corporativo
+        </span>
+      </div>
+
+      <NuxtLink to="/templates">
+        <IntegrityButton
+          variant="danger"
+          size="sm"
+          icon="i-heroicons-arrow-left-on-rectangle"
+        >
+          Salir de la plantilla
+        </IntegrityButton>
+      </NuxtLink>
+    </div>
   </div>
 </template>

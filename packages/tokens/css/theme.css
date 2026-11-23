@@ -191,7 +191,10 @@
   }
 
   .page-size-select {
-    @apply inline-block !w-[4.75rem] !min-w-[4.75rem] !max-w-[4.75rem] py-1.5 !pl-2.5 !pr-8 text-sm;
+    @apply inline-block appearance-none !w-[4.75rem] !min-w-[4.75rem] !max-w-[4.75rem] py-1.5 !pl-2.5 !pr-7 text-sm leading-tight;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none !important;
   }
 }

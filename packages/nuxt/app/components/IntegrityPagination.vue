@@ -73,17 +73,23 @@ function onPageSizeChange(event: Event) {
         <label :for="selectId" class="text-slate-500 dark:text-slate-400 whitespace-nowrap">
           Por página
         </label>
-        <select
-          :id="selectId"
-          :value="pageSize"
-          :disabled="disabled"
-          class="page-size-select rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 disabled:opacity-50"
-          @change="onPageSizeChange"
-        >
-          <option v-for="size in pageSizeOptions" :key="size" :value="size">
-            {{ size }}
-          </option>
-        </select>
+        <div class="relative inline-flex items-center">
+          <select
+            :id="selectId"
+            :value="pageSize"
+            :disabled="disabled"
+            class="page-size-select rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 tabular-nums focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 disabled:opacity-50"
+            @change="onPageSizeChange"
+          >
+            <option v-for="size in pageSizeOptions" :key="size" :value="size">
+              {{ size }}
+            </option>
+          </select>
+          <Icon
+            name="i-heroicons-chevron-down"
+            class="pointer-events-none absolute right-2 h-3.5 w-3.5 text-slate-400"
+          />
+        </div>
       </div>
     </div>
 

@@ -29,10 +29,11 @@ describe('@andrescardenasintegrity/integrity-tokens', () => {
     expect(integrityTailwindPreset.theme.extend.colors.accent.DEFAULT).toBe('var(--color-accent)')
   })
 
-  it('loads the CJS preset without circular default references for Tailwind/jiti consumers', () => {
+  it('loads the CJS preset without circular default references and matches ESM exports', () => {
+    const cjsTokens = require('../tokens.cjs')
     const cjsPreset = require('../tailwind.preset.cjs')
-    expect(cjsPreset.darkMode).toBe('class')
+    expect(cjsTokens).toEqual(integrityTokens)
+    expect(cjsPreset).toEqual(integrityTailwindPreset)
     expect(cjsPreset.default).toBeUndefined()
-    expect(cjsPreset.theme.extend.colors.brand['600']).toBe('#273679')
   })
 })

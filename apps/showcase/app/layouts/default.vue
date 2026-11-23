@@ -40,8 +40,6 @@ const docsSections = [
     title: 'Plantillas',
     items: [
       { label: 'Galería de Plantillas', to: '/templates', exact: true },
-      { label: 'Dashboard Admin', to: '/templates/dashboard' },
-      { label: 'Login Corporativo', to: '/templates/login' },
     ],
   },
 ]

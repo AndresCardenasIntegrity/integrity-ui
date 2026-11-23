@@ -44,8 +44,8 @@ const templates = [
           {{ tpl.description }}
         </p>
         <NuxtLink :to="tpl.to">
-          <IntegrityButton icon-right="i-heroicons-arrow-right">
-            Abrir vista previa
+          <IntegrityButton icon-right="i-heroicons-arrow-top-right-on-square">
+            Abrir plantilla en vista previa
           </IntegrityButton>
         </NuxtLink>
       </IntegrityCard>
