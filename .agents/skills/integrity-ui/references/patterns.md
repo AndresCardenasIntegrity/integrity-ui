@@ -152,7 +152,51 @@ async function deleteItem(folio: string) {
 </template>
 ```
 
-## 4. React + Tailwind Consumer Pattern
+## 4. Public Service Status Board Pattern (Tablero de Estados)
+
+Use this standard layout whenever building a public or multi-environment **Tablero de Estado de Servicios** (inspired by Integrity's operational status boards):
+
+### Required Structure
+1. **Top Header (no sidebar):** `<IntegrityMark />` inside `bg-accent text-white rounded-xl`, service/client title + `"Tablero de Estado de Servicios"`, `<IntegritySelect>` environment switcher (`PROD` / `QA` / `ALL`), manual refresh `<IntegrityButton>`, and Light/Dark toggle (`useIntegrityTheme()`).
+2. **View Switcher + Legend:** `<IntegrityTabs variant="pills">` toggling between **Estado actual** and **Historial (30 días)** alongside the 4 semantic color swatches (`operational` `#10B981`, `degraded` `#F59E0B`, `down` `#EF4444`, `maintenance` `#6366F1`).
+3. **Environment Section:** Eyebrow `ENTORNO`, environment heading, overall status dot + service count, and an **Overall Status Banner** summarizing system health (plus amber/red empty states if an environment is unconfigured or unreachable).
+4. **Active Incidents & Scheduled Maintenance:** Left-bordered cards (`border-l-4` in red/amber/indigo) showing severity `<IntegrityBadge>`, `Service › Component`, title, description, status pill, and start/window timestamps in `font-mono`.
+5. **Expandable Services + 60-Day Uptime Capsules:**
+   - Accordion service rows expanding to child components.
+   - Each row displays a 60-column CSS grid (`grid-template-columns: repeat(60, minmax(0, 1fr))`) of clickable day capsules (`2px` gap, `28px` height on services / `22px` on components).
+   - Clicking any capsule opens an `<IntegrityModal size="sm">` (or anchored popover) showing the exact date, `<IntegrityBadge>`, duration, and day summary (`"Operacional durante las 24 horas..."` or incident details).
+6. **30-Day Incident History:** Incidents grouped by date with a top status stripe (`h-1 rounded-full`), severity badge, `font-mono` start/resolved timestamps, and total duration. **Security rule:** never expose internal `rootCause` notes on unauthenticated public status views; gate root-cause details strictly to authenticated admin sessions.
+
+```vue
+<!-- Minimal Status Row + 60-Day Uptime Track -->
+<div class="rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 p-4 flex flex-col gap-4 lg:flex-row lg:items-center">
+  <div class="flex items-center gap-3 lg:w-80 shrink-0">
+    <p class="text-sm font-semibold text-slate-950 dark:text-white truncate flex-1">{{ service.name }}</p>
+    <IntegrityBadge :tone="service.status" dot size="sm">{{ statusLabel(service.status) }}</IntegrityBadge>
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="grid gap-[2px] h-7" style="grid-template-columns: repeat(60, minmax(0, 1fr));">
+      <button
+        v-for="day in service.history"
+        :key="day.date"
+        type="button"
+        :class="['h-full w-full rounded-[2px] transition-transform hover:scale-y-110', capsuleColor(day.status)]"
+        :title="`${day.dateLabel}: ${statusLabel(day.status)}`"
+        @click="openDayDetail(service, day)"
+      />
+    </div>
+    <div class="mt-1 flex justify-between text-[11px] text-slate-400 tabular-nums">
+      <span>Hace 60 días</span>
+      <span class="font-mono">{{ service.uptimePct }}</span>
+      <span>Hoy</span>
+    </div>
+  </div>
+</div>
+```
+
+*(Full interactive reference implementation in `apps/showcase/app/pages/templates/status.vue`.)*
+
+## 5. React + Tailwind Consumer Pattern
 
 ```js
 // tailwind.config.js

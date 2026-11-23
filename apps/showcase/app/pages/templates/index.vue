@@ -1,6 +1,13 @@
 <script setup lang="ts">
 const templates = [
   {
+    title: 'Tablero de Estados de Servicios',
+    description: 'Página pública de monitoreo por entorno (PROD/QA) con banner general, incidentes activos, mantenimiento programado, cápsulas interactivas de uptime de 60 días e historial de 30 días.',
+    to: '/templates/status',
+    icon: 'i-heroicons-signal',
+    badge: 'Status Board',
+  },
+  {
     title: 'Dashboard Administrativo + CRUD',
     description: 'Estructura base con métricas KPI, filtros rápidos, tabla tipada, modal de alta y confirmación.',
     to: '/templates/dashboard',

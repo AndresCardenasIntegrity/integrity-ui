@@ -87,7 +87,7 @@ Read the relevant reference file before writing complex views so every prop, slo
 
 - **Props, `v-model`, slots, and usage examples for all 28 components:** [references/components.md](./references/components.md)
 - **Composables, utilities, TypeScript types, and CSS/Tailwind tokens:** [references/composables-and-tokens.md](./references/composables-and-tokens.md)
-- **Complete page templates & patterns (Admin CRUD, Ops/PM2 Log & JSON Inspector, Login, React tokens):** [references/patterns.md](./references/patterns.md)
+- **Complete page templates & patterns (Admin CRUD, Public Status Board / Tablero de Estados, Ops/PM2 Log & JSON Inspector, Login, React tokens):** [references/patterns.md](./references/patterns.md)
 
 ## 5. Verification Checklist
 

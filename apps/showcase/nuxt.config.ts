@@ -25,6 +25,7 @@ export default defineNuxtConfig({
         '/components',
         '/data',
         '/templates',
+        '/templates/status',
         '/templates/dashboard',
         '/templates/login',
       ],
