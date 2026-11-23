@@ -13,6 +13,8 @@ integrity-ui/
 │   └── showcase/             # @andrescardenasintegrity/integrity-showcase — Portal web interactivo de documentación, componentes y templates
 ├── starters/
 │   └── nuxt-client/          # Plantilla mínima Nuxt 4 lista para copiar en proyectos de nuevos clientes
+├── .agents/skills/
+│   └── integrity-ui/         # Skill oficial para agentes de IA (Antigravity, Claude Code, Cursor, Codex)
 ├── .github/workflows/        # CI (ci.yml), publicación a GitHub Packages (publish.yml) y deploy del Showcase (deploy-showcase.yml)
 ├── .npmrc.consumer.example   # Plantilla .npmrc para proyectos cliente
 └── DESIGN_SYSTEM.md          # Reglas visuales oficiales para desarrolladores y agentes de IA
@@ -103,3 +105,18 @@ export default {
   content: ['./src/**/*.{ts,tsx}'],
 }
 ```
+
+## Skill oficial para Agentes de IA (`integrity-ui`)
+
+El repositorio incluye la skill completa en [`.agents/skills/integrity-ui/`](./.agents/skills/integrity-ui/SKILL.md) con el inventario y referencia exacta de los **28 componentes** (incluyendo Combobox, `IntegrityCodeBlock`, `IntegrityMarkdown` e `IntegrityTerminalLog` para PM2), **5 composables**, **5 utilidades**, tokens y patrones de página.
+
+### Cómo agregar la skill a tu agente
+
+- **En un proyecto (recomendado para todo el equipo):** copia `.agents/skills/integrity-ui/` a `<tu-proyecto>/.agents/skills/integrity-ui/` (autodescubierta por Antigravity, Cursor, Codex y agentes compatibles) o instálala con:
+
+```bash
+npx skills add AndresCardenasIntegrity/integrity-ui
+```
+
+- **Global en tu máquina (Antigravity):** copia `.agents/skills/integrity-ui/` en `~/.gemini/config/skills/integrity-ui/` (Windows: `%USERPROFILE%\.gemini\config\skills\integrity-ui\`).
+

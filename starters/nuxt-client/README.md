@@ -29,3 +29,12 @@ pnpm dev
 - Layout administrativo con `<IntegrityAppShell />` (`app/layouts/default.vue`).
 - Pantallas base `/` (KPIs + tabla + paginación) y `/login`.
 - Fuentes `Inter` y `JetBrains Mono`, Heroicons locales y soporte Light/Dark automático.
+
+## Skill de IA recomendada
+
+Para que tu agente (Antigravity, Claude Code, Cursor, Codex) conozca los 28 componentes, composables y reglas visuales de Integrity UI/UX, copia `.agents/skills/integrity-ui/` desde el repositorio `integrity-ui` a `.agents/skills/integrity-ui/` en este proyecto o ejecuta:
+
+```bash
+npx skills add AndresCardenasIntegrity/integrity-ui
+```
+
