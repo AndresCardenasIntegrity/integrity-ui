@@ -54,11 +54,17 @@ const maxWidthClass = computed(() => {
       <main
         :class="[
           'flex-1 min-w-0 overflow-x-hidden pt-[var(--admin-mobile-nav-h)] lg:pt-0',
-          padded ? 'p-4 lg:p-8' : '',
           scrollable ? 'overflow-y-auto' : '',
         ]"
       >
-        <div :class="[maxWidthClass, 'mx-auto w-full', contentClass]">
+        <div
+          :class="[
+            maxWidthClass,
+            'mx-auto w-full',
+            padded ? 'px-4 py-6 sm:px-6 lg:px-8 lg:py-8' : '',
+            contentClass,
+          ]"
+        >
           <slot />
         </div>
       </main>

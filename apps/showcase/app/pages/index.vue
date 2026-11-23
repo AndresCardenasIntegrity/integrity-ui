@@ -78,7 +78,7 @@ const highlights = [
           <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 dark:bg-brand-950/70 text-accent dark:text-brand-300">
             <Icon name="i-heroicons-swatch" class="h-5 w-5" />
           </span>
-          <div>
+          <div class="min-w-0 flex-1">
             <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">100% Identidad Integrity</p>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
               Paleta azul Integrity (<span class="font-mono">#273679</span>), superficies minimalistas y contraste cuidado en Light & Dark.
@@ -92,10 +92,10 @@ const highlights = [
           <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
             <Icon name="i-heroicons-puzzle-piece" class="h-5 w-5" />
           </span>
-          <div>
+          <div class="min-w-0 flex-1">
             <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Nuxt 4 Layer Empaquetado</p>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Una sola línea <span class="font-mono">extends: ['@andrescardenasintegrity/integrity-ui-nuxt']</span> hereda fuentes, CSS, Tailwind y componentes.
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 break-words">
+              Una sola línea <span class="font-mono break-all">extends: ['@andrescardenasintegrity/integrity-ui-nuxt']</span> hereda fuentes, CSS, Tailwind y componentes.
             </p>
           </div>
         </div>
@@ -106,10 +106,10 @@ const highlights = [
           <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
             <Icon name="i-heroicons-arrows-right-left" class="h-5 w-5" />
           </span>
-          <div>
+          <div class="min-w-0 flex-1">
             <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Preparado para React</p>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              <span class="font-mono">@andrescardenasintegrity/integrity-tokens</span> desacopla variables CSS y preset Tailwind para futuros proyectos en React.
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 break-words">
+              <span class="font-mono break-all">@andrescardenasintegrity/integrity-tokens</span> desacopla variables CSS y preset Tailwind para futuros proyectos en React.
             </p>
           </div>
         </div>
