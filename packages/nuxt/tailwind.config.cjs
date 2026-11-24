@@ -1,4 +1,4 @@
-const integrityTailwindPreset = require('@andrescardenasintegrity/integrity-tokens/preset')
+const integrityTailwindPreset = require('@integritysoftwarela/integrity-tokens/preset')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

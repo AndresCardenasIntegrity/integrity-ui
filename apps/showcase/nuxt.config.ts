@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  extends: ['@andrescardenasintegrity/integrity-ui-nuxt'],
+  extends: ['@integritysoftwarela/integrity-ui-nuxt'],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   app: {

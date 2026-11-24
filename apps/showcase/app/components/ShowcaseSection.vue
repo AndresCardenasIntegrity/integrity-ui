@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import type { IntegrityCodeLanguage } from '@andrescardenasintegrity/integrity-ui-nuxt/app/utils/codeHighlight'
+import type { IntegrityCodeLanguage } from '@integritysoftwarela/integrity-ui-nuxt/app/utils/codeHighlight'
 
 withDefaults(defineProps<{
   title: string

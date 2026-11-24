@@ -6,7 +6,7 @@ import type {
   IntegrityTabItem,
   IntegrityTableColumn,
   IntegrityTimelineEvent,
-} from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+} from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 const { success, info, warning } = useIntegrityToast()
 const { confirm } = useIntegrityConfirm()
@@ -110,16 +110,16 @@ const pagedDemoRows = computed(() => {
 })
 
 // Snippets
-const npmrcSnippet = `@andrescardenasintegrity:registry=https://npm.pkg.github.com
+const npmrcSnippet = `@integritysoftwarela:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=\${NODE_AUTH_TOKEN}`
 
-const installCmd = 'pnpm add @andrescardenasintegrity/integrity-ui-nuxt'
+const installCmd = 'pnpm add @integritysoftwarela/integrity-ui-nuxt'
 
 const nuxtConfigSnippet = `export default defineNuxtConfig({
-  extends: ['@andrescardenasintegrity/integrity-ui-nuxt'],
+  extends: ['@integritysoftwarela/integrity-ui-nuxt'],
 })`
 
-const reactPresetSnippet = `import integrityPreset from '@andrescardenasintegrity/integrity-tokens/preset'
+const reactPresetSnippet = `import integrityPreset from '@integritysoftwarela/integrity-tokens/preset'
 
 export default {
   presets: [integrityPreset],
@@ -442,7 +442,7 @@ async function triggerCriticalAction() {
           >
             <div class="space-y-4">
               <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
-                El paquete <code class="font-mono text-xs break-all text-slate-900 dark:text-zinc-100">@andrescardenasintegrity/integrity-tokens</code> no tiene dependencias de Vue ni Nuxt y ofrece exports duales ESM/CJS.
+                El paquete <code class="font-mono text-xs break-all text-slate-900 dark:text-zinc-100">@integritysoftwarela/integrity-tokens</code> no tiene dependencias de Vue ni Nuxt y ofrece exports duales ESM/CJS.
               </p>
               <IntegrityCodeBlock
                 title="tailwind.config.js"

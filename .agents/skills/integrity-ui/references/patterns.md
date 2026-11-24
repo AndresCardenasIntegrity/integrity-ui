@@ -4,7 +4,7 @@
 
 ```vue
 <script setup lang="ts">
-import type { IntegrityNavGroup } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+import type { IntegrityNavGroup } from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 const navGroups: IntegrityNavGroup[] = [
   {
@@ -36,7 +36,7 @@ const navGroups: IntegrityNavGroup[] = [
 ```vue
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue'
-import type { IntegrityTableColumn } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+import type { IntegrityTableColumn } from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 const { success } = useIntegrityToast()
 const { confirm } = useIntegrityConfirm()
@@ -283,7 +283,7 @@ defineProps<{
 
 ```js
 // tailwind.config.js
-import integrityPreset from '@andrescardenasintegrity/integrity-tokens/preset'
+import integrityPreset from '@integritysoftwarela/integrity-tokens/preset'
 
 export default {
   presets: [integrityPreset],
@@ -293,5 +293,5 @@ export default {
 
 ```ts
 // src/main.tsx
-import '@andrescardenasintegrity/integrity-tokens/css'
+import '@integritysoftwarela/integrity-tokens/css'
 ```

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from 'vue'
-import type { IntegrityTableColumn } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+import type { IntegrityTableColumn } from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 definePageMeta({
   layout: 'admin',

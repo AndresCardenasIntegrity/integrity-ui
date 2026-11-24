@@ -1,4 +1,4 @@
 # Copia este archivo como `.npmrc` en la raíz del proyecto cliente
 # y define la variable de entorno NODE_AUTH_TOKEN con un GitHub PAT (scope `read:packages`).
-@andrescardenasintegrity:registry=https://npm.pkg.github.com
+@integritysoftwarela:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}

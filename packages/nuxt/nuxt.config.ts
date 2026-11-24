@@ -28,6 +28,6 @@ export default defineNuxtConfig({
     serverBundle: 'local',
   },
   tailwindcss: {
-    cssPath: '@andrescardenasintegrity/integrity-tokens/css',
+    cssPath: '@integritysoftwarela/integrity-tokens/css',
   },
 })

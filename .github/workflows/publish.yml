@@ -33,7 +33,7 @@ jobs:
           node-version: 22
           cache: pnpm
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@andrescardenasintegrity'
+          scope: '@integritysoftwarela'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -59,22 +59,22 @@ jobs:
       - name: Build showcase
         run: pnpm build
 
-      - name: Publish @andrescardenasintegrity/integrity-tokens
+      - name: Publish @integritysoftwarela/integrity-tokens
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ inputs.dry_run }}" = "true" ]; then
-            pnpm --filter @andrescardenasintegrity/integrity-tokens publish --no-git-checks --dry-run
+            pnpm --filter @integritysoftwarela/integrity-tokens publish --no-git-checks --dry-run
           else
-            pnpm --filter @andrescardenasintegrity/integrity-tokens publish --no-git-checks
+            pnpm --filter @integritysoftwarela/integrity-tokens publish --no-git-checks
           fi
 
-      - name: Publish @andrescardenasintegrity/integrity-ui-nuxt
+      - name: Publish @integritysoftwarela/integrity-ui-nuxt
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ inputs.dry_run }}" = "true" ]; then
-            pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt publish --no-git-checks --dry-run
+            pnpm --filter @integritysoftwarela/integrity-ui-nuxt publish --no-git-checks --dry-run
           else
-            pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt publish --no-git-checks
+            pnpm --filter @integritysoftwarela/integrity-ui-nuxt publish --no-git-checks
           fi

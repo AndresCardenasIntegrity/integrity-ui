@@ -5,7 +5,7 @@ import { integrityTailwindPreset } from '../tailwind.preset.js'
 
 const require = createRequire(import.meta.url)
 
-describe('@andrescardenasintegrity/integrity-tokens', () => {
+describe('@integritysoftwarela/integrity-tokens', () => {
   it('exposes official Integrity brand accent tokens for light and dark modes', () => {
     expect(integrityTokens.accent.DEFAULT.toLowerCase()).toBe('#273679')
     expect(integrityTokens.accent.dark.toLowerCase()).toBe('#3d4f9c')

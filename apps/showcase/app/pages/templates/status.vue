@@ -4,7 +4,7 @@ import type {
   IntegrityBadgeTone,
   IntegritySelectOption,
   IntegrityTabItem,
-} from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+} from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 definePageMeta({
   layout: false,

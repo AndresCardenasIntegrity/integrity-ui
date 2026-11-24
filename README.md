@@ -7,10 +7,10 @@ Sistema de diseño corporativo, tokens visuales, **Nuxt 4 Layer** reutilizable y
 ```text
 integrity-ui/
 ├── packages/
-│   ├── tokens/               # @andrescardenasintegrity/integrity-tokens — CSS variables, Tailwind preset y marca (agnóstico: Nuxt, Vue, futuro React)
-│   └── nuxt/                 # @andrescardenasintegrity/integrity-ui-nuxt — Nuxt 4 Layer con componentes y composables Vue 3
+│   ├── tokens/               # @integritysoftwarela/integrity-tokens — CSS variables, Tailwind preset y marca (agnóstico: Nuxt, Vue, futuro React)
+│   └── nuxt/                 # @integritysoftwarela/integrity-ui-nuxt — Nuxt 4 Layer con componentes y composables Vue 3
 ├── apps/
-│   └── showcase/             # @andrescardenasintegrity/integrity-showcase — Portal web interactivo de documentación, componentes y templates
+│   └── showcase/             # @integritysoftwarela/integrity-showcase — Portal web interactivo de documentación, componentes y templates
 ├── starters/
 │   └── nuxt-client/          # Plantilla mínima Nuxt 4 lista para copiar en proyectos de nuevos clientes
 ├── .agents/skills/
@@ -57,21 +57,21 @@ El portal interactivo `apps/showcase` está configurado para exportación estát
 1. Crea un archivo `.npmrc` en la raíz del proyecto cliente (puedes copiar [`.npmrc.consumer.example`](./.npmrc.consumer.example)):
 
 ```ini
-@andrescardenasintegrity:registry=https://npm.pkg.github.com
+@integritysoftwarela:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
 ```
 
 2. Exporta tu token de GitHub con permiso `read:packages` en tu entorno local o CI (`NODE_AUTH_TOKEN`) e instala el layer:
 
 ```bash
-pnpm add @andrescardenasintegrity/integrity-ui-nuxt
+pnpm add @integritysoftwarela/integrity-ui-nuxt
 ```
 
 3. Extiende el layer en `nuxt.config.ts`:
 
 ```ts
 export default defineNuxtConfig({
-  extends: ['@andrescardenasintegrity/integrity-ui-nuxt'],
+  extends: ['@integritysoftwarela/integrity-ui-nuxt'],
 })
 ```
 
@@ -92,13 +92,13 @@ export default defineNuxtConfig({
 1. Configura `.npmrc` como arriba e instala los tokens:
 
 ```bash
-pnpm add @andrescardenasintegrity/integrity-tokens
+pnpm add @integritysoftwarela/integrity-tokens
 ```
 
-2. Importa `@andrescardenasintegrity/integrity-tokens/css` en el punto de entrada CSS y extiende el preset en `tailwind.config.js`:
+2. Importa `@integritysoftwarela/integrity-tokens/css` en el punto de entrada CSS y extiende el preset en `tailwind.config.js`:
 
 ```js
-import integrityPreset from '@andrescardenasintegrity/integrity-tokens/preset'
+import integrityPreset from '@integritysoftwarela/integrity-tokens/preset'
 
 export default {
   presets: [integrityPreset],
@@ -115,7 +115,7 @@ El repositorio incluye la skill completa en [`.agents/skills/integrity-ui/`](./.
 - **En un proyecto (recomendado para todo el equipo):** copia `.agents/skills/integrity-ui/` a `<tu-proyecto>/.agents/skills/integrity-ui/` (autodescubierta por Antigravity, Cursor, Codex y agentes compatibles) o instálala con:
 
 ```bash
-npx skills add AndresCardenasIntegrity/integrity-ui
+npx skills add IntegritySoftwareLA/integrity-ui
 ```
 
 - **Global en tu máquina (Antigravity):** copia `.agents/skills/integrity-ui/` en `~/.gemini/config/skills/integrity-ui/` (Windows: `%USERPROFILE%\.gemini\config\skills\integrity-ui\`).

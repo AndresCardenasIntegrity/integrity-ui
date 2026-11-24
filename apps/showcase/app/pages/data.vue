@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue'
-import type { IntegrityTableColumn, IntegrityTimelineEvent } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+import type { IntegrityTableColumn, IntegrityTimelineEvent } from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 const search = shallowRef('')
 const statusFilter = shallowRef('all')

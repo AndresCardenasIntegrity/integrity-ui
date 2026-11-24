@@ -1,17 +1,17 @@
 {
-  "name": "@andrescardenasintegrity/integrity-ui-nuxt",
+  "name": "@integritysoftwarela/integrity-ui-nuxt",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "type": "module",
   "description": "Nuxt 4 Layer oficial de Integrity UI/UX con componentes Vue 3, composables y tokens de diseño.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AndresCardenasIntegrity/integrity-ui.git",
+    "url": "git+https://github.com/IntegritySoftwareLA/integrity-ui.git",
     "directory": "packages/nuxt"
   },
-  "homepage": "https://github.com/AndresCardenasIntegrity/integrity-ui#readme",
+  "homepage": "https://github.com/IntegritySoftwareLA/integrity-ui#readme",
   "bugs": {
-    "url": "https://github.com/AndresCardenasIntegrity/integrity-ui/issues"
+    "url": "https://github.com/IntegritySoftwareLA/integrity-ui/issues"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -24,7 +24,7 @@
     "tailwind.config.cjs"
   ],
   "dependencies": {
-    "@andrescardenasintegrity/integrity-tokens": "workspace:*",
+    "@integritysoftwarela/integrity-tokens": "workspace:*",
     "@iconify-json/heroicons": "^1.2.3",
     "@nuxt/icon": "^2.2.2",
     "@nuxtjs/google-fonts": "^3.2.0",

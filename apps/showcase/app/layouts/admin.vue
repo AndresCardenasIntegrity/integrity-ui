@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IntegrityNavGroup } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+import type { IntegrityNavGroup } from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 const navGroups: IntegrityNavGroup[] = [
   {

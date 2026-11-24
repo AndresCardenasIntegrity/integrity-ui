@@ -1,6 +1,6 @@
 # Integrity UI/UX — Component Reference (32 Components)
 
-All components are auto-imported by Nuxt 4 when extending `@andrescardenasintegrity/integrity-ui-nuxt`. Import TypeScript interfaces from `@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui`.
+All components are auto-imported by Nuxt 4 when extending `@integritysoftwarela/integrity-ui-nuxt`. Import TypeScript interfaces from `@integritysoftwarela/integrity-ui-nuxt/app/types/ui`.
 
 ---
 

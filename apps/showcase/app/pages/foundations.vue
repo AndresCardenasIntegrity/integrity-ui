@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { integrityTokens } from '@andrescardenasintegrity/integrity-tokens'
+import { integrityTokens } from '@integritysoftwarela/integrity-tokens'
 
 const { isDark, toggleTheme } = useIntegrityTheme()
 
@@ -29,7 +29,7 @@ const surfaceSwatches = [
 <template>
   <div class="space-y-8">
     <IntegrityPageHeader
-      eyebrow="@andrescardenasintegrity/integrity-tokens"
+      eyebrow="@integritysoftwarela/integrity-tokens"
       title="Fundamentos Visuales"
       subtitle="Haz clic en cualquier muestra de color para copiar su valor hexadecimal. Alterna el tema para validar ambos modos."
     >

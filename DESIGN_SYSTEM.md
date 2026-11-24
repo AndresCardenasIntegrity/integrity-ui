@@ -6,7 +6,7 @@ Este documento define el estándar visual obligatorio para todos los proyectos w
 
 - **Minimalismo operativo:** superficies limpias, bordes sutiles (`1px`), jerarquía clara y cero ruido decorativo.
 - **Identidad 100% Integrity:** el color primario y de foco es azul Integrity (`#273679` en claro, `#3D4F9C` en oscuro). No introducir colores de acento arbitrarios por pantalla.
-- **Light & Dark de primera clase:** toda vista y componente debe funcionar en modo claro y oscuro usando las clases `dark:` y variables de `@andrescardenasintegrity/integrity-tokens/css`.
+- **Light & Dark de primera clase:** toda vista y componente debe funcionar en modo claro y oscuro usando las clases `dark:` y variables de `@integritysoftwarela/integrity-tokens/css`.
 - **Densidad empresarial legible:** tablas claras con tipografía tabular (`tabular-nums`), códigos/IDs en `font-mono`, controles consistentes y estados vacíos/carga explícitos.
 
 ## 2. Tokens oficiales
@@ -39,7 +39,7 @@ Este documento define el estándar visual obligatorio para todos los proyectos w
 
 ## 5. Páginas de error y rutas no encontradas (404 / 403 / 500)
 
-- **Nunca dejar la página de error por defecto de Nuxt/Vite:** el layer `@andrescardenasintegrity/integrity-ui-nuxt` provee `app/error.vue` conectado a `IntegrityErrorPage`, heredado automáticamente por todos los proyectos.
+- **Nunca dejar la página de error por defecto de Nuxt/Vite:** el layer `@integritysoftwarela/integrity-ui-nuxt` provee `app/error.vue` conectado a `IntegrityErrorPage`, heredado automáticamente por todos los proyectos.
 - **Identidad y recuperación clara:** toda pantalla de ruta no encontrada (`404`) debe mostrar la marca Integrity, el código HTTP en `font-mono` (`HTTP 404`), la ruta solicitada, soporte Light/Dark y al menos dos acciones claras (`Volver al inicio` vía `clearError({ redirect: '/' })` y `Regresar`).
 - **Seguridad en producción:** nunca exponer stack traces, consultas SQL, rutas internas del servidor ni mensajes crudos de backend al usuario final (`showDetails` debe permanecer en `false` en producción).
 - **Personalización:** si un proyecto requiere enlaces o textos propios, crear `app/error.vue` local envolviendo `<IntegrityErrorPage :error="error" />` y usando sus props (`home-path`, `home-label`, `title`, `description`) o el slot `#actions`.

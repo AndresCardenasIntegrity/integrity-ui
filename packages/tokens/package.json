@@ -1,17 +1,17 @@
 {
-  "name": "@andrescardenasintegrity/integrity-tokens",
+  "name": "@integritysoftwarela/integrity-tokens",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "type": "module",
   "description": "Tokens de diseño agnósticos de framework para Integrity UI/UX (CSS variables, Tailwind preset y marca).",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AndresCardenasIntegrity/integrity-ui.git",
+    "url": "git+https://github.com/IntegritySoftwareLA/integrity-ui.git",
     "directory": "packages/tokens"
   },
-  "homepage": "https://github.com/AndresCardenasIntegrity/integrity-ui#readme",
+  "homepage": "https://github.com/IntegritySoftwareLA/integrity-ui#readme",
   "bugs": {
-    "url": "https://github.com/AndresCardenasIntegrity/integrity-ui/issues"
+    "url": "https://github.com/IntegritySoftwareLA/integrity-ui/issues"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

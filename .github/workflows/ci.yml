@@ -43,6 +43,6 @@ jobs:
       - name: Verify npm tarballs (pnpm pack)
         run: |
           mkdir -p /tmp/integrity-pack-check
-          pnpm --filter @andrescardenasintegrity/integrity-tokens pack --pack-destination /tmp/integrity-pack-check
-          pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt pack --pack-destination /tmp/integrity-pack-check
+          pnpm --filter @integritysoftwarela/integrity-tokens pack --pack-destination /tmp/integrity-pack-check
+          pnpm --filter @integritysoftwarela/integrity-ui-nuxt pack --pack-destination /tmp/integrity-pack-check
           ls -lh /tmp/integrity-pack-check

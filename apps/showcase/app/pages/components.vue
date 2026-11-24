@@ -4,7 +4,7 @@ import type {
   IntegrityMultiSelectOption,
   IntegritySelectOption,
   IntegrityTabItem,
-} from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+} from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 const { success, error, warning, info } = useIntegrityToast()
 const { confirm } = useIntegrityConfirm()
@@ -174,7 +174,7 @@ const codeMarkdownDemoSnippet = `<IntegrityCodeBlock title="response.json" langu
 <template>
   <div class="space-y-10">
     <IntegrityPageHeader
-      eyebrow="@andrescardenasintegrity/integrity-ui-nuxt"
+      eyebrow="@integritysoftwarela/integrity-ui-nuxt"
       title="Componentes Base"
       subtitle="Primitivos interactivos con soporte nativo Light/Dark, foco accesible y contratos TypeScript."
     />

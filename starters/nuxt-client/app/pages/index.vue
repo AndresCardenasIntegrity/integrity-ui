@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import type { IntegrityTableColumn } from '@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui'
+import type { IntegrityTableColumn } from '@integritysoftwarela/integrity-ui-nuxt/app/types/ui'
 
 const { success } = useIntegrityToast()
 const { confirm } = useIntegrityConfirm()
@@ -44,7 +44,7 @@ async function handleAction() {
     <IntegrityPageHeader
       eyebrow="Integrity UI/UX Starter"
       title="Panel Principal"
-      subtitle="Plantilla mínima Nuxt 4 conectada a @andrescardenasintegrity/integrity-ui-nuxt."
+      subtitle="Plantilla mínima Nuxt 4 conectada a @integritysoftwarela/integrity-ui-nuxt."
     >
       <template #actions>
         <IntegrityButton icon="i-heroicons-sparkles" @click="handleAction">

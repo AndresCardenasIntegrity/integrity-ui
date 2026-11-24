@@ -89,7 +89,7 @@ function isActive(to: string, exact = false) {
           </span>
 
           <a
-            href="https://github.com/AndresCardenasIntegrity/integrity-ui"
+            href="https://github.com/IntegritySoftwareLA/integrity-ui"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Repositorio en GitHub"

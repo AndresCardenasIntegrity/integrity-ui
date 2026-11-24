@@ -41,7 +41,7 @@ Tracks revealed keys in app state and optionally gates reveal behind `useIntegri
 ```ts
 const { isRevealed, display, toggleReveal, clearRevealed } = useIntegritySensitive()
 // Also exports standalone helper:
-import { maskSensitiveValue } from '@andrescardenasintegrity/integrity-ui-nuxt/app/composables/useIntegritySensitive'
+import { maskSensitiveValue } from '@integritysoftwarela/integrity-ui-nuxt/app/composables/useIntegritySensitive'
 ```
 
 ---
@@ -60,7 +60,7 @@ import { maskSensitiveValue } from '@andrescardenasintegrity/integrity-ui-nuxt/a
 
 ## 3. Shared TypeScript Types
 
-Import from `@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui`:
+Import from `@integritysoftwarela/integrity-ui-nuxt/app/types/ui`:
 - `IntegrityButtonVariant`, `IntegrityButtonSize`
 - `IntegrityBadgeTone`, `IntegrityAlertTone`
 - `IntegrityToastType`, `IntegrityToastItem`, `IntegrityToastInput`
@@ -72,13 +72,13 @@ Import from `@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui`:
 
 ---
 
-## 4. Official Tokens (`@andrescardenasintegrity/integrity-tokens`)
+## 4. Official Tokens (`@integritysoftwarela/integrity-tokens`)
 
 ### Exports
-- `@andrescardenasintegrity/integrity-tokens` — `integrityTokens` JS object (dual ESM + CJS) + `.d.ts` types.
-- `@andrescardenasintegrity/integrity-tokens/css` — Tailwind layers, CSS custom properties, scrollbars, and helper classes (`.page-header`, `.page-title`, `.page-subtitle`, `.page-actions`, `.data-table-wrap`, `.form-grid-2`, `.mobile-card`, `.page-size-select`, `.scrollbar-thin`, `.scrollbar-hidden`, `.shadow-subtle`, `.shadow-card`).
-- `@andrescardenasintegrity/integrity-tokens/preset` — Zero-dependency Tailwind CSS preset (dual ESM + CJS).
-- `@andrescardenasintegrity/integrity-tokens/brand/integrity-mark.svg` — Official SVG mark.
+- `@integritysoftwarela/integrity-tokens` — `integrityTokens` JS object (dual ESM + CJS) + `.d.ts` types.
+- `@integritysoftwarela/integrity-tokens/css` — Tailwind layers, CSS custom properties, scrollbars, and helper classes (`.page-header`, `.page-title`, `.page-subtitle`, `.page-actions`, `.data-table-wrap`, `.form-grid-2`, `.mobile-card`, `.page-size-select`, `.scrollbar-thin`, `.scrollbar-hidden`, `.shadow-subtle`, `.shadow-card`).
+- `@integritysoftwarela/integrity-tokens/preset` — Zero-dependency Tailwind CSS preset (dual ESM + CJS).
+- `@integritysoftwarela/integrity-tokens/brand/integrity-mark.svg` — Official SVG mark.
 
 ### Official Palette
 | Token | Light | Dark | Usage |

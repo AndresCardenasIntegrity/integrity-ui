@@ -6,21 +6,21 @@
   "description": "Integrity UI/UX — Sistema de diseño estandarizado, tokens, Nuxt 4 Layer y Showcase interactivo.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AndresCardenasIntegrity/integrity-ui.git"
+    "url": "git+https://github.com/IntegritySoftwareLA/integrity-ui.git"
   },
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "dev": "pnpm --filter @andrescardenasintegrity/integrity-showcase dev",
-    "build": "pnpm --filter @andrescardenasintegrity/integrity-showcase build",
-    "generate": "pnpm --filter @andrescardenasintegrity/integrity-showcase generate",
-    "preview": "pnpm --filter @andrescardenasintegrity/integrity-showcase preview",
-    "typecheck": "pnpm --filter @andrescardenasintegrity/integrity-showcase typecheck",
+    "dev": "pnpm --filter @integritysoftwarela/integrity-showcase dev",
+    "build": "pnpm --filter @integritysoftwarela/integrity-showcase build",
+    "generate": "pnpm --filter @integritysoftwarela/integrity-showcase generate",
+    "preview": "pnpm --filter @integritysoftwarela/integrity-showcase preview",
+    "typecheck": "pnpm --filter @integritysoftwarela/integrity-showcase typecheck",
     "test": "vitest run",
     "test:watch": "vitest",
-    "pack:tokens": "pnpm --filter @andrescardenasintegrity/integrity-tokens pack",
-    "pack:nuxt": "pnpm --filter @andrescardenasintegrity/integrity-ui-nuxt pack"
+    "pack:tokens": "pnpm --filter @integritysoftwarela/integrity-tokens pack",
+    "pack:nuxt": "pnpm --filter @integritysoftwarela/integrity-ui-nuxt pack"
   },
   "packageManager": "pnpm@12.11.2",
   "devDependencies": {
