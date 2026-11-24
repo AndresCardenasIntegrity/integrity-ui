@@ -8,6 +8,20 @@ const templates = [
     badge: 'Status Board',
   },
   {
+    title: 'Chat para Agente IA',
+    description: 'Interfaz corporativa a pantalla completa para asistentes IA con historial deslizable, selector de entorno PROD/QA, Markdown con JSON, logs PM2 ANSI, guías paso a paso y confirmación de acciones.',
+    to: '/templates/agent',
+    icon: 'i-heroicons-sparkles',
+    badge: 'Agente IA',
+  },
+  {
+    title: 'Efectos de Carga y Transición',
+    description: 'Laboratorio interactivo de los dos overlays oficiales de carga: animación de bienvenida al hacer login (IntegrityWelcomeOverlay) y transición esmerilada al cambiar de entorno (IntegrityEnvironmentOverlay).',
+    to: '/templates/transitions',
+    icon: 'i-heroicons-arrow-path',
+    badge: 'Overlays',
+  },
+  {
     title: 'Dashboard Administrativo + CRUD',
     description: 'Estructura base con métricas KPI, filtros rápidos, tabla tipada, modal de alta y confirmación.',
     to: '/templates/dashboard',
@@ -16,7 +30,7 @@ const templates = [
   },
   {
     title: 'Login Corporativo Integrity',
-    description: 'Pantalla completa minimalista con panel de identidad Integrity, validación y modo oscuro.',
+    description: 'Pantalla completa minimalista con panel de identidad Integrity, validación, efecto de bienvenida animado y modo oscuro.',
     to: '/templates/login',
     icon: 'i-heroicons-lock-closed',
     badge: 'Pantalla Completa',

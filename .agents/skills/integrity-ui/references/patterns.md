@@ -196,7 +196,68 @@ Use this standard layout whenever building a public or multi-environment **Table
 
 *(Full interactive reference implementation in `apps/showcase/app/pages/templates/status.vue`.)*
 
-## 5. Customizing 404 & Error Pages (`app/error.vue`)
+## 5. Loading & Transition Overlays (Login Welcome & Environment Switch)
+
+Use `<IntegrityWelcomeOverlay>` after successful authentication before entering the workspace, and `<IntegrityEnvironmentOverlay>` whenever switching active environments (`PROD` / `QA` / `DEV`) or reloading cross-environment data.
+
+```vue
+<script setup lang="ts">
+const showWelcome = shallowRef(false)
+const switchingEnv = shallowRef(false)
+const currentEnv = shallowRef<'PROD' | 'QA'>('PROD')
+
+async function onLoginSuccess() {
+  showWelcome.value = true
+  await new Promise((r) => setTimeout(r, 2200))
+  await navigateTo('/dashboard')
+  showWelcome.value = false
+}
+
+async function onChangeEnvironment(nextEnv: 'PROD' | 'QA') {
+  switchingEnv.value = true
+  try {
+    await refreshWorkspaceData(nextEnv)
+    currentEnv.value = nextEnv
+  } finally {
+    switchingEnv.value = false
+  }
+}
+</script>
+
+<template>
+  <IntegrityWelcomeOverlay
+    :show="showWelcome"
+    label="Bienvenido"
+    subtitle="Preparando tu espacio de trabajo Integrity…"
+  />
+
+  <IntegrityEnvironmentOverlay
+    :show="switchingEnv"
+    :environment="currentEnv === 'PROD' ? 'Producción (PROD)' : 'Calidad (QA)'"
+    label="Sincronizando servicios del entorno…"
+  />
+</template>
+```
+
+*(Full interactive reference implementation in `apps/showcase/app/pages/templates/transitions.vue` and `apps/showcase/app/pages/templates/login.vue`.)*
+
+## 6. AI Agent Chat Interface Pattern
+
+Use this layout when building an enterprise AI assistant / copilot inside an Integrity app:
+
+1. **Full-Height Flex Container:** `h-screen overflow-hidden flex flex-col` so the header and composer stay pinned while only the message thread scrolls.
+2. **Branded Header:** `<IntegrityAgentIcon variant="mark" size="md" pulse />`, active conversation title + green online pill, optional `PROD`/`QA` switcher backed by `<IntegrityEnvironmentOverlay>`, **Historial** toggle button, **Nueva** chat button, and Light/Dark toggle.
+3. **Slide-Over Conversation History:** Left panel listing past sessions with message counts and timestamps (`tabular-nums`). Deleting a conversation MUST use `useIntegrityConfirm({ type: 'danger', ... })` — never native `window.confirm()`.
+4. **Empty Welcome State:** `<IntegrityAgentIcon variant="mark" size="xl" pulse />`, clear prompt title, and 4 clickable suggestion cards.
+5. **Rich Assistant Messages:**
+   - Render prose, tables, and fenced JSON/code blocks with `<IntegrityMarkdown :content="msg.content" />`.
+   - Render live PM2/CLI outputs with `<IntegrityTerminalLog :logs="msg.terminalLogs" />`.
+   - Render human-in-the-loop action proposals with Integrity brand tint cards (`bg-brand-50/50 dark:bg-brand-950/30`), `<IntegrityBadge>` status (`degraded` / `operational` / `neutral`), and explicit **Confirmar y ejecutar** / **Cancelar** buttons.
+6. **Composer Footer:** Auto-resizing `<textarea>` (`Enter` sends, `Shift+Enter` newline) paired with a primary `<IntegrityButton icon="i-heroicons-paper-airplane">`.
+
+*(Full interactive reference implementation in `apps/showcase/app/pages/templates/agent.vue`.)*
+
+## 7. Customizing 404 & Error Pages (`app/error.vue`)
 
 The layer automatically provides `app/error.vue` rendering `<IntegrityErrorPage :error="error" />`. Only create a local `app/error.vue` when customizing redirect paths or extra recovery actions — never expose stack traces or raw backend error messages in production:
 
@@ -218,7 +279,7 @@ defineProps<{
 </template>
 ```
 
-## 6. React + Tailwind Consumer Pattern
+## 8. React + Tailwind Consumer Pattern
 
 ```js
 // tailwind.config.js

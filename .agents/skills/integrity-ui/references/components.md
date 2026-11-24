@@ -1,4 +1,4 @@
-# Integrity UI/UX — Component Reference (29 Components)
+# Integrity UI/UX — Component Reference (32 Components)
 
 All components are auto-imported by Nuxt 4 when extending `@andrescardenasintegrity/integrity-ui-nuxt`. Import TypeScript interfaces from `@andrescardenasintegrity/integrity-ui-nuxt/app/types/ui`.
 
@@ -27,6 +27,10 @@ Surface container with optional header, actions, and footer.
 
 ### `IntegrityMark`
 Geometric Integrity SVG isotipo inheriting `currentColor` (`class="h-6 w-6 text-accent"`).
+
+### `IntegrityAgentIcon`
+Official branded AI assistant emblem (`bg-accent` with `IntegrityMark`, optional `AI` watermark badge for floating action buttons, and emerald online pulse dot).
+- **Props:** `variant?: 'fab' | 'avatar' | 'mark'` (`'mark'`), `size?: 'sm' | 'md' | 'lg' | 'xl'` (`'md'`), `pulse?: boolean` (`false` — automatically enabled for `'fab'`), `ariaLabel?: string` (`'Asistente IA Integrity'`).
 
 ### `IntegrityErrorPage`
 Standard branded error & 404 page (automatically wired via the layer's `app/error.vue`). Handles `404`, `403`, `401`, and `500` with Spanish copy, monospace HTTP status badge, missing route pill, Light/Dark toggle, and `clearError({ redirect })` recovery.
@@ -122,6 +126,14 @@ Teleported slide-over side panel for contextual editing or detail inspection.
 
 ### `IntegrityConfirmDialog` & `IntegrityToastContainer`
 Mount once in `app/app.vue`. Controlled programmatically via `useIntegrityConfirm()` and `useIntegrityToast()`.
+
+### `IntegrityWelcomeOverlay`
+Full-screen login welcome animation (`Teleport to="body"`, `z-[20000]`). Sequentially stroke-draws the three squares of the Integrity isotipo with a radial `var(--color-accent)` glow, uppercase letter-spaced greeting, optional subtitle, Light/Dark background, and `prefers-reduced-motion` support.
+- **Props:** `show?: boolean` (`false`), `label?: string` (`'Bienvenido'`), `subtitle?: string`.
+
+### `IntegrityEnvironmentOverlay`
+Full-screen frosted-glass (`backdrop-blur-md`) loading overlay (`Teleport to="body"`, `z-[20000]`) for switching environments (`PROD` / `QA` / `DEV`) or reloading workspace context. Loops the Integrity isotipo stroke-draw + subtle fill animation with an optional environment `<IntegrityBadge>` and bouncing dots, respecting `prefers-reduced-motion`.
+- **Props:** `show?: boolean` (`false`), `label?: string` (`'Cambiando de entorno…'`), `environment?: string`, `size?: 'md' | 'lg'` (`'lg'`).
 
 ---
 

@@ -26,6 +26,8 @@ export default defineNuxtConfig({
         '/data',
         '/templates',
         '/templates/status',
+        '/templates/agent',
+        '/templates/transitions',
         '/templates/dashboard',
         '/templates/login',
       ],

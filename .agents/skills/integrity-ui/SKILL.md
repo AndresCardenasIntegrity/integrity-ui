@@ -2,13 +2,13 @@
 name: integrity-ui
 description: >-
   Official design system and UI engineering skill for Integrity web applications
-  built with @andrescardenasintegrity/integrity-ui-nuxt (Nuxt 4 Layer, 29 Vue 3
+  built with @andrescardenasintegrity/integrity-ui-nuxt (Nuxt 4 Layer, 32 Vue 3
   components, 5 composables, 5 utilities) and @andrescardenasintegrity/integrity-tokens
   (framework-agnostic CSS variables and Tailwind preset for Nuxt, Vue, and React).
   Use this skill whenever creating, updating, or reviewing Integrity web interfaces,
-  dashboards, forms, comboboxes, tables, pagination, modals, drawers, JSON/code
-  viewers, Markdown renderers, PM2 terminal log viewers, or styling with Integrity
-  brand tokens and Light/Dark mode.
+  dashboards, forms, comboboxes, tables, pagination, modals, drawers, loading
+  transition overlays, AI agent chat panels, JSON/code viewers, Markdown renderers,
+  PM2 terminal log viewers, or styling with Integrity brand tokens and Light/Dark mode.
 ---
 
 # Integrity UI/UX — Agent Skill
@@ -65,16 +65,16 @@ export default defineNuxtConfig({
 
 For **React + Tailwind** projects, install `@andrescardenasintegrity/integrity-tokens`, import `@andrescardenasintegrity/integrity-tokens/css`, and register `@andrescardenasintegrity/integrity-tokens/preset` in `tailwind.config.js`.
 
-## 3. Quick Component Inventory (29 Components)
+## 3. Quick Component Inventory (32 Components)
 
 All components are auto-imported in Nuxt 4 when extending `@andrescardenasintegrity/integrity-ui-nuxt`.
 
 | Category | Components |
 |---|---|
-| **Layout & Brand** | `IntegrityAppShell`, `IntegritySidebar`, `IntegrityPageHeader`, `IntegrityCard`, `IntegrityMark`, `IntegrityErrorPage` |
+| **Layout & Brand** | `IntegrityAppShell`, `IntegritySidebar`, `IntegrityPageHeader`, `IntegrityCard`, `IntegrityMark`, `IntegrityAgentIcon`, `IntegrityErrorPage` |
 | **Primitives & Feedback** | `IntegrityButton`, `IntegrityBadge`, `IntegrityAlert`, `IntegrityTabs`, `IntegrityEmptyState`, `IntegrityLogoLoader`, `IntegritySkeleton` |
 | **Forms & Inputs** | `IntegrityInput`, `IntegritySelect` (custom shadcn-style combobox), `IntegrityMultiSelect`, `IntegrityEmailListInput` |
-| **Overlays & Global** | `IntegrityModal`, `IntegrityDrawer`, `IntegrityConfirmDialog`, `IntegrityToastContainer` |
+| **Overlays & Global** | `IntegrityModal`, `IntegrityDrawer`, `IntegrityConfirmDialog`, `IntegrityToastContainer`, `IntegrityWelcomeOverlay`, `IntegrityEnvironmentOverlay` |
 | **Data & Audit** | `IntegrityStatCard`, `IntegrityDataTable`, `IntegrityPagination`, `IntegritySensitiveCell`, `IntegrityTimeline` |
 | **Code, Markdown & Logs** | `IntegrityCodeBlock`, `IntegrityMarkdown`, `IntegrityTerminalLog` |
 
@@ -86,9 +86,9 @@ All components are auto-imported in Nuxt 4 when extending `@andrescardenasintegr
 
 Read the relevant reference file before writing complex views so every prop, slot, and TypeScript type is exact:
 
-- **Props, `v-model`, slots, and usage examples for all 28 components:** [references/components.md](./references/components.md)
+- **Props, `v-model`, slots, and usage examples for all 32 components:** [references/components.md](./references/components.md)
 - **Composables, utilities, TypeScript types, and CSS/Tailwind tokens:** [references/composables-and-tokens.md](./references/composables-and-tokens.md)
-- **Complete page templates & patterns (Admin CRUD, Public Status Board / Tablero de Estados, Ops/PM2 Log & JSON Inspector, Login, React tokens):** [references/patterns.md](./references/patterns.md)
+- **Complete page templates & patterns (Admin CRUD, Public Status Board, AI Agent Chat, Login Welcome & Environment Switch Overlays, Ops/PM2 Inspector, 404/Error, React tokens):** [references/patterns.md](./references/patterns.md)
 
 ## 5. Verification Checklist
 

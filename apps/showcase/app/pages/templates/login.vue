@@ -11,6 +11,7 @@ const { success } = useIntegrityToast()
 const email = shallowRef('operaciones@integrity.com')
 const password = shallowRef('••••••••••••')
 const loading = shallowRef(false)
+const showWelcome = shallowRef(false)
 
 onMounted(() => initTheme())
 
@@ -18,8 +19,12 @@ function handleSubmit() {
   loading.value = true
   setTimeout(() => {
     loading.value = false
-    success('Inicio de sesión simulado correctamente.', 'Bienvenido')
-  }, 600)
+    showWelcome.value = true
+    setTimeout(() => {
+      showWelcome.value = false
+      success('Inicio de sesión simulado correctamente.', 'Bienvenido')
+    }, 2200)
+  }, 500)
 }
 </script>
 
@@ -107,6 +112,13 @@ function handleSubmit() {
         Acceso protegido · Integrity UI/UX Template
       </p>
     </section>
+
+    <!-- Login Welcome Overlay -->
+    <IntegrityWelcomeOverlay
+      :show="showWelcome"
+      label="Bienvenido"
+      subtitle="Cargando panel operativo Integrity…"
+    />
 
     <!-- Floating Template Preview Bar -->
     <div
