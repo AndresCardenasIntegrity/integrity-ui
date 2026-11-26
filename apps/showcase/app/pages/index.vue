@@ -52,7 +52,7 @@ const recentEvents: IntegrityTimelineEvent[] = [
     at: '2026-11-23T15:12:00Z',
     kind: 'api',
     title: 'Despliegue v1.0.0 verificado',
-    detail: 'Build limpio y paquetes validados en GitHub Packages.',
+    detail: 'Build limpio y paquetes validados en npm.',
     http: 200,
   },
   {
@@ -110,10 +110,9 @@ const pagedDemoRows = computed(() => {
 })
 
 // Snippets
-const npmrcSnippet = `@integritysoftwarela:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=\${NODE_AUTH_TOKEN}`
-
 const installCmd = 'pnpm add @integritysoftwarela/integrity-ui-nuxt'
+const npmrcSnippet = `# Opcional (recomendado con pnpm + Nuxt 4)
+shamefully-hoist=true`
 
 const nuxtConfigSnippet = `export default defineNuxtConfig({
   extends: ['@integritysoftwarela/integrity-ui-nuxt'],
@@ -174,7 +173,7 @@ async function triggerCriticalAction() {
       </h1>
 
       <p class="mt-4 max-w-2xl text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed">
-        Tokens agnósticos de framework, 25 componentes empresariales listos para Nuxt 4, modo claro y oscuro de primera clase y plantillas operativas con identidad 100% Integrity.
+        Tokens agnósticos de framework, 32 componentes empresariales listos para Nuxt 4, modo claro y oscuro de primera clase y plantillas operativas con identidad 100% Integrity.
       </p>
 
       <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
@@ -261,7 +260,7 @@ async function triggerCriticalAction() {
             </IntegrityCard>
 
             <IntegrityAlert tone="info" title="Herencia automática del Layer">
-              Un solo <span class="font-mono text-xs">extends</span> aplica tokens, fuentes, Heroicons y 25 componentes en cualquier proyecto Nuxt 4.
+              Un solo <span class="font-mono text-xs">extends</span> aplica tokens, fuentes, Heroicons y 32 componentes en cualquier proyecto Nuxt 4.
             </IntegrityAlert>
           </div>
 
@@ -418,9 +417,15 @@ async function triggerCriticalAction() {
         <div v-else class="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <IntegrityCard
             title="Integración en Nuxt 4"
-            subtitle="Configura GitHub Packages y extiende el Layer oficial."
+            subtitle="Instala directo desde npm (sin token) y extiende el Layer oficial."
           >
             <div class="space-y-4">
+              <IntegrityCodeBlock
+                title="Terminal"
+                language="bash"
+                :code="installCmd"
+                :show-line-numbers="false"
+              />
               <IntegrityCodeBlock
                 title=".npmrc"
                 language="bash"

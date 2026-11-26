@@ -15,8 +15,8 @@ integrity-ui/
 │   └── nuxt-client/          # Plantilla mínima Nuxt 4 lista para copiar en proyectos de nuevos clientes
 ├── .agents/skills/
 │   └── integrity-ui/         # Skill oficial para agentes de IA (Antigravity, Claude Code, Cursor, Codex)
-├── .github/workflows/        # CI (ci.yml), publicación a GitHub Packages (publish.yml) y deploy del Showcase (deploy-showcase.yml)
-├── .npmrc.consumer.example   # Plantilla .npmrc para proyectos cliente
+├── .github/workflows/        # CI (ci.yml), publicación a npm (publish.yml) y deploy del Showcase (deploy-showcase.yml)
+├── .npmrc.consumer.example   # Plantilla .npmrc recomendada (shamefully-hoist) para proyectos Nuxt 4 con pnpm
 └── DESIGN_SYSTEM.md          # Reglas visuales oficiales para desarrolladores y agentes de IA
 ```
 
@@ -34,34 +34,37 @@ pnpm build
 
 Abre `http://127.0.0.1:3000` para explorar el portal **Integrity UI/UX Showcase**.
 
-## Distribución en GitHub Packages
+## Distribución en npm (`npmjs.org`)
 
-Los paquetes se publican automáticamente en **GitHub Packages** (`https://npm.pkg.github.com`) al crear y subir un tag `v*` (por ejemplo, `v1.0.0`) que coincida con la versión de `packages/tokens/package.json` y `packages/nuxt/package.json`:
+Los paquetes son **públicos en npm** (`https://registry.npmjs.org`), por lo que cualquier proyecto puede instalarlos sin configurar tokens ni `.npmrc` privados.
+
+Para publicar nuevas versiones automáticamente desde GitHub Actions:
+1. Agrega un Granular/Automation Token de npm con permiso de escritura en `@integritysoftwarela` como secreto `NPM_TOKEN` en **Settings → Secrets and variables → Actions**.
+2. Crea y sube un tag `v*` (por ejemplo, `v1.0.0`) que coincida con la versión de `packages/tokens/package.json` y `packages/nuxt/package.json`:
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-También puedes validar la publicación en modo `dry-run` desde **Actions → Publish Packages to GitHub Packages → Run workflow**.
+También puedes validar la publicación en modo `dry-run` (sin requerir `NPM_TOKEN`) desde **Actions → Publish Packages to npm → Run workflow**.
 
 ## Deploy estático del Showcase
 
-El portal interactivo `apps/showcase` está configurado para exportación estática completa (`nuxt generate`) con las 7 rutas pre-renderizadas, fuentes locales y los 45 Heroicons incrustados en el bundle de cliente:
+El portal interactivo `apps/showcase` está configurado para exportación estática completa (`nuxt generate`) con rutas pre-renderizadas, fuentes locales y Heroicons incrustados en el bundle de cliente:
 
 - **GitHub Pages (automático):** el workflow [`.github/workflows/deploy-showcase.yml`](./.github/workflows/deploy-showcase.yml) se ejecuta en cada `push` a `main`, detecta automáticamente el `base_path` (`/integrity-ui/` o `/` si usas dominio propio) e incluye `.nojekyll`. Solo habilita **Settings → Pages → Source: GitHub Actions** en el repositorio.
 - **VPS / Nginx (salida estática):** ejecuta `pnpm generate` (con `NUXT_APP_BASE_URL=/` por defecto) y sirve la carpeta `apps/showcase/.output/public/` directamente desde Nginx/Caddy.
 
 ## Cómo usar en un nuevo proyecto Nuxt 4
 
-1. Crea un archivo `.npmrc` en la raíz del proyecto cliente (puedes copiar [`.npmrc.consumer.example`](./.npmrc.consumer.example)):
+1. *(Recomendado con pnpm)* Crea `.npmrc` en la raíz del proyecto cliente (puedes copiar [`.npmrc.consumer.example`](./.npmrc.consumer.example)):
 
 ```ini
-@integritysoftwarela:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+shamefully-hoist=true
 ```
 
-2. Exporta tu token de GitHub con permiso `read:packages` en tu entorno local o CI (`NODE_AUTH_TOKEN`) e instala el layer:
+2. Instala el layer directamente desde npm (sin token):
 
 ```bash
 pnpm add @integritysoftwarela/integrity-ui-nuxt
@@ -89,7 +92,7 @@ export default defineNuxtConfig({
 
 ## Cómo usar tokens en un futuro proyecto React
 
-1. Configura `.npmrc` como arriba e instala los tokens:
+1. Instala el paquete de tokens directamente desde npm (sin token):
 
 ```bash
 pnpm add @integritysoftwarela/integrity-tokens
@@ -108,7 +111,7 @@ export default {
 
 ## Skill oficial para Agentes de IA (`integrity-ui`)
 
-El repositorio incluye la skill completa en [`.agents/skills/integrity-ui/`](./.agents/skills/integrity-ui/SKILL.md) con el inventario y referencia exacta de los **28 componentes** (incluyendo Combobox, `IntegrityCodeBlock`, `IntegrityMarkdown` e `IntegrityTerminalLog` para PM2), **5 composables**, **5 utilidades**, tokens y patrones de página.
+El repositorio incluye la skill completa en [`.agents/skills/integrity-ui/`](./.agents/skills/integrity-ui/SKILL.md) con el inventario y referencia exacta de los **32 componentes** (incluyendo Combobox, `IntegrityCodeBlock`, `IntegrityMarkdown`, `IntegrityTerminalLog` para PM2, overlays de carga y chat IA), **5 composables**, **5 utilidades**, tokens y patrones de página.
 
 ### Cómo agregar la skill a tu agente
 

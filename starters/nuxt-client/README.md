@@ -5,17 +5,7 @@ Plantilla mínima lista para copiar y arrancar un nuevo proyecto web sobre `@int
 ## Uso rápido
 
 1. Copia esta carpeta (`starters/nuxt-client`) a la ubicación del nuevo proyecto y ajusta `name` en `package.json`.
-2. Exporta tu token de GitHub con permiso `read:packages`:
-
-```bash
-# PowerShell
-$env:NODE_AUTH_TOKEN = "ghp_tu_token"
-
-# Bash / Zsh
-export NODE_AUTH_TOKEN="ghp_tu_token"
-```
-
-3. Instala dependencias y levanta el servidor de desarrollo:
+2. Instala dependencias y levanta el servidor de desarrollo (los paquetes `@integritysoftwarela/*` son públicos en npm, no requieren token):
 
 ```bash
 pnpm install
@@ -32,7 +22,7 @@ pnpm dev
 
 ## Skill de IA recomendada
 
-Para que tu agente (Antigravity, Claude Code, Cursor, Codex) conozca los 28 componentes, composables y reglas visuales de Integrity UI/UX, copia `.agents/skills/integrity-ui/` desde el repositorio `integrity-ui` a `.agents/skills/integrity-ui/` en este proyecto o ejecuta:
+Para que tu agente (Antigravity, Claude Code, Cursor, Codex) conozca los 32 componentes, composables y reglas visuales de Integrity UI/UX, copia `.agents/skills/integrity-ui/` desde el repositorio `integrity-ui` a `.agents/skills/integrity-ui/` en este proyecto o ejecuta:
 
 ```bash
 npx skills add IntegritySoftwareLA/integrity-ui

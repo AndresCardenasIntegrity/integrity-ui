@@ -1,4 +1,3 @@
-# Copia este archivo como `.npmrc` en la raíz del proyecto cliente
-# y define la variable de entorno NODE_AUTH_TOKEN con un GitHub PAT (scope `read:packages`).
-@integritysoftwarela:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+# Copia este archivo como `.npmrc` en la raíz de proyectos Nuxt 4 con pnpm.
+# Los paquetes @integritysoftwarela/* son públicos en npmjs.org (no requieren token para instalar).
+shamefully-hoist=true

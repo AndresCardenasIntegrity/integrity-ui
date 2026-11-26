@@ -29,12 +29,12 @@ Use this skill to build consistent, production-grade web interfaces aligned with
 
 ## 2. Project Setup (Nuxt 4 Consumer)
 
-1. Configure `.npmrc` in the client project root (export `NODE_AUTH_TOKEN` with a GitHub PAT having `read:packages`):
+Packages under `@integritysoftwarela/*` are published publicly on **npmjs.org** (no authentication token required to install).
+
+1. *(Recommended with pnpm)* Ensure `.npmrc` in the client project root enables hoisting for Nuxt 4 layers:
 
 ```ini
 shamefully-hoist=true
-@integritysoftwarela:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
 ```
 
 2. Install the Nuxt 4 Layer:
